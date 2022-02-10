@@ -1,0 +1,35 @@
+.topbox {
+  display: flex;
+  width: auto;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.words {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+.hello {
+  font-family: "Pilat Extended";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
+.username {
+  font-family: "Pilat Extended";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+.profile {
+  width: 32px;
+  height: 32px;
+  background: #ff4b00;
+  border-radius: 8px;
+  position: relative;
+  top: 17px;
+}

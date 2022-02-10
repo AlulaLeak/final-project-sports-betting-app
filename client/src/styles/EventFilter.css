@@ -1,0 +1,22 @@
+.event-box {
+    border: 1px solid rgb(110, 177, 89);
+    width: auto;
+    display:flex;
+    border-radius: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+    flex-direction: column;
+}
+.event-title-words {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.event-selection-button-homepage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.event-text {
+    text-decoration: underline;
+}

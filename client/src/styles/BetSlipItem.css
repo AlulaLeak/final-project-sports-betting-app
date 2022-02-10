@@ -1,0 +1,53 @@
+.betslip-item-box-space-between {
+  border: 1px solid rgb(110, 177, 89);
+  width: auto;
+  display: flex;
+  border-radius: 5px;
+  margin-left: 8px;
+  margin-right: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.betslip-item-box-center {
+  border: 1px solid rgb(110, 177, 89);
+  width: auto;
+  display: flex;
+  border-radius: 5px;
+  margin-left: 8px;
+  margin-right: 8px;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}
+
+.team-bet-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.odds-on-slip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cancel-and-bet-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.betslip-cancel-button {
+  background-color: black;
+  border-right: 3px solid rgb(110, 177, 89);
+  margin-right: 10px;
+}
+
+.bet-slip-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 25px;
+}
