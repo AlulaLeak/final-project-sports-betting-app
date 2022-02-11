@@ -9,6 +9,7 @@ import { useState } from "react";
 import { usePageMode } from "../../helpers/usePageMode";
 import { useBetSlip } from "../../helpers/useBetSlip";
 import "./Home.css";
+import Navbar from "../components/Navbar";
 
 function Home() {
   const {
@@ -23,6 +24,7 @@ function Home() {
 
   return (
     <div className="home-greeting-event-separator">
+      <Navbar />
       <HomeGreeting />
       <BetSlipList
         cancelFromBetSlip={cancelFromBetSlipArray}

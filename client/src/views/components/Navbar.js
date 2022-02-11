@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../../styles/Navbar.css'
-import ReorderIcon from '@material-ui/icons/Reorder'
+import ReorderIcon from '@material-ui/icons/Reorder';
+import LogoutButton from '../components/auth buttons/LogoutButton';
 
 function Navbar() {
 
@@ -16,17 +17,20 @@ function Navbar() {
       <div className='leftSide'>
         <div className='logo'>logo</div>
       </div>
+      
       <div className='rightSide'>
         <div className='links' id={showLinks ? 'hidden' : ''}>
           <a href='???'>Profile</a>
           <a href='???'>Games</a>
-          <a href='???'>About</a>
+          <a href='???'>About</a>          
           <img alt='' />
         </div>
+        
         <button onClick={openMobileMenuToggle}>
           <ReorderIcon />
         </button>
       </div>
+      <LogoutButton />
     </div>
     </div>
 
