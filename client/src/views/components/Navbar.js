@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../../styles/Navbar.css'
 import ReorderIcon from '@material-ui/icons/Reorder';
 import LogoutButton from '../components/auth buttons/LogoutButton';
+import logo from '../../styles/logoImg/logo.png'
 
 function Navbar() {
 
@@ -10,28 +11,28 @@ function Navbar() {
   function openMobileMenuToggle() {
     setShowLinks(!showLinks)
   }
-
   return (
-    <div className="navbarWrapper">
-    <div className='Navbar'>
-      <div className='leftSide'>
-        <div className='logo'>logo</div>
-      </div>
-      
-      <div className='rightSide'>
-        <div className='links' id={showLinks ? 'hidden' : ''}>
-          <a href='???'>Profile</a>
-          <a href='???'>Games</a>
-          <a href='???'>About</a>          
-          <img alt='' />
+    <div>
+      <div className="navbarWrapper">
+        <div className='Navbar'>
+
+          <img className='logoImg' src={logo} alt='Logo' />s
+
+          <div className='rightSide'>
+            <div className='links' id={showLinks ? 'hidden' : ''}>
+
+              <LogoutButton />
+
+              <img alt='' />
+            </div>
+
+            <button onClick={openMobileMenuToggle}>
+              <ReorderIcon />
+            </button>
+
+          </div>
         </div>
-        
-        <button onClick={openMobileMenuToggle}>
-          <ReorderIcon />
-        </button>
       </div>
-      <LogoutButton />
-    </div>
     </div>
 
   )
