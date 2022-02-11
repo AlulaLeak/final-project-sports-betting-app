@@ -4,8 +4,10 @@ import App from './App';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 
-const domain = "dev-xizrzot6.us.auth0.com";
-const clientId = "5Avf1LpxZV2WvCSxtMN31DG02GdjrIMn";
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
+console.log("HERE:", process.env.REACT_APP_AUTH0_DOMAIN);
 
 ReactDOM.render(
   <Auth0Provider

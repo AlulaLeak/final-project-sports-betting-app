@@ -5,8 +5,10 @@ import "./Login.css";
 
 
 function Login() {
-  return (     
-      < LoginButton />      
+  return ( 
+    <div className='body-login-background'> 
+      < LoginButton />
+    </div>         
   )
 }
 
