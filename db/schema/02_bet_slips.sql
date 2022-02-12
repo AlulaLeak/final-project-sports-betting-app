@@ -1,4 +1,0 @@
-DROP TABLE IF EXISTS bet_slip CASCADE:
-CREATE TABLE bet_slip(
-  -- 
-)
