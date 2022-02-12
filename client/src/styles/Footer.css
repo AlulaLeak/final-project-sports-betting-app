@@ -1,15 +1,14 @@
-.navbarWrapper {
-  position: relative;
-}
-.Navbar {
+
+.footer {
+  display: flex;
+
   background-color: #1b1b1c;
-  color: #843c34;  
+  color: #e73725; 
   height: 80px;
   font-weight: 500;
   display: flex;
-  justify-content: center;
-  position:fixed;
-  top: 0;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   /* border-radius: 10px; */
   /* width: auto; creates that fluidity */
@@ -24,44 +23,9 @@
   /* align-items: center; */
   border-radius: 8px;
   margin-left: 33px;
+  margin-right: 20px;
 }
 
-.rightSide {
-  flex: 50%;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-}
-
-.links {
-  max-height: 80px;
-}
-
-.links a {
-  max-height: 80px;
-  text-decoration: none;
-  color: #e73725;
-  font-size: 20px;
-  margin-right: 50px;
-}
-
-.logo {
-  max-height: 80px;
-  text-decoration: none;
-  color: #e73725;
-  font-size: 20px;
-  margin-left: 50px;
-  font-weight: 600;
-}
-
-.rightSide button {
-  display: none;
-  margin-right: 28px;
-}
-
-.rightSide #hidden {
-  display: flex;
-}
 
 
 

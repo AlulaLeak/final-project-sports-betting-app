@@ -16,7 +16,7 @@ function Navbar() {
       <div className="navbarWrapper">
         <div className='Navbar'>
 
-          <img className='logoImg' src={logo} alt='Logo' />s
+          <img className='logoImg' src={logo} alt='Logo' />
 
           <div className='rightSide'>
             <div className='links' id={showLinks ? 'hidden' : ''}>

@@ -3,6 +3,7 @@
   width: auto;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 100px;
 }
 .words {
   display: flex;
