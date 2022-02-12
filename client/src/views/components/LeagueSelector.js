@@ -15,9 +15,9 @@ function LeagueSelector({ setLeagueName }) {
   return (
     <div className="event-box">
       <div className="event-title-words">
-        <h3 className="event-text">Pick Your League</h3>
+        Pick Your League
       </div>
-      <br className="event-filter-divider" />
+      {/* <br className="event-filter-divider" /> */}
       <div className="event-selection-button-homepage">
         <button
           value="?league=NBA"

@@ -1,22 +1,30 @@
 .event-box {
-    border: 1px solid rgb(110, 177, 89);
     width: auto;
     display:flex;
-    border-radius: 5px;
-    margin-left: 8px;
-    margin-right: 8px;
     flex-direction: column;
+    background-color: #a0a4ab;
+    padding: 15px   ;
 }
 .event-title-words {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    font-size: 30px;
+    font-weight: 500;
 }
 .event-selection-button-homepage {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding: 15px 30px 10px 30px;
 }
-.event-text {
-    text-decoration: underline;
+
+.game-button {
+    background-color: #bac1c9;
+    height: 50px;
+    width: 15%;
+    border: outset 3px #a0a4ab;
+    font-weight: 600;
+    font-size: 20px;
+    
 }
