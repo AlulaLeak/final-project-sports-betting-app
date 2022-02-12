@@ -1,36 +1,20 @@
 .topbox {
+  background-color: #bac1c9;
   display: flex;
-  width: auto;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 100px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 100px 0px 10px 0px;
+  padding: 5px 40px 5px 40px;  
 }
 .words {
   display: flex;
-  flex-direction: column;
-  width: auto;
+  flex-direction: column;  
 }
 .hello {
-  font-family: "Pilat Extended";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
+  font-weight: bold;
+  font-size: 28px;
 }
-.username {
-  font-family: "Pilat Extended";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 23px;
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-}
-.profile {
-  width: 32px;
-  height: 32px;
-  background: #ff4b00;
-  border-radius: 8px;
-  position: relative;
-  top: 17px;
+.avatar {
+  border-radius: 10%;
 }

@@ -1,6 +1,6 @@
-.navbarWrapper {
+/* .navbarWrapper {
   position: relative;
-}
+} */
 .Navbar {
   background-color: #1b1b1c;
   color: #843c34;  
@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   position:fixed;
+  flex-wrap: wrap;
   top: 0;
   width: 100%;
   /* border-radius: 10px; */
@@ -21,7 +22,6 @@
   height: 81px;
   display: flex;
   justify-content: left;
-  /* align-items: center; */
   border-radius: 8px;
   margin-left: 33px;
 }
@@ -33,25 +33,12 @@
   align-items: center;
 }
 
-.links {
-  max-height: 80px;
-}
-
 .links a {
   max-height: 80px;
   text-decoration: none;
   color: #e73725;
   font-size: 20px;
   margin-right: 50px;
-}
-
-.logo {
-  max-height: 80px;
-  text-decoration: none;
-  color: #e73725;
-  font-size: 20px;
-  margin-left: 50px;
-  font-weight: 600;
 }
 
 .rightSide button {
@@ -61,6 +48,10 @@
 
 .rightSide #hidden {
   display: flex;
+}
+
+@media all and (max-width: 400px) {
+
 }
 
 

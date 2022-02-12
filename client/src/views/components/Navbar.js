@@ -21,9 +21,9 @@ function Navbar() {
           <div className='rightSide'>
             <div className='links' id={showLinks ? 'hidden' : ''}>
 
+              <img alt='' />
               <LogoutButton />
 
-              <img alt='' />
             </div>
 
             <button onClick={openMobileMenuToggle}>
