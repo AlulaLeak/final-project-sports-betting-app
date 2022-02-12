@@ -10,6 +10,7 @@ import { usePageMode } from "../../helpers/usePageMode";
 import { useBetSlip } from "../../helpers/useBetSlip";
 import "./Home.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer"
 
 function Home() {
   const {
@@ -47,6 +48,7 @@ function Home() {
           {/* <MockGameList addToBetSlipArray={addToBetSlipArray} /> */}
         </>
       )}
+      <Footer />
     </div>
   );
 }

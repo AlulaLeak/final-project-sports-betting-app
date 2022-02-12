@@ -10,16 +10,13 @@
   padding: 10px;
 }
 
-.betslip-item-box-center {
-  border: 1px solid rgb(110, 177, 89);
-  width: auto;
+.betslip-item-box-center { 
   display: flex;
-  border-radius: 5px;
-  margin-left: 8px;
-  margin-right: 8px;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: center;  
   padding: 10px;
+  font-size: 25px;
+  font-weight: 500;
+  background-color: #a0a4ab;
 }
 
 .team-bet-game {
@@ -49,5 +46,11 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: 25px;
+  font-size: 45px;
+  font-weight: 550;
+  /* border-bottom: solid 1px  #ec121f;
+  border-top: solid 1px #ec121f; */
+  /* background-color: #0a040c; */
+  color: #ec121f;
+  
 }

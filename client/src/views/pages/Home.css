@@ -1,5 +1,13 @@
 .home-greeting-event-separator {
-        /* display: flex;
-        flex-direction: row;
-        align-self:flex-start; */
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+body {
+  font-family: "Bungee", cursive;
+  font-family: "Prompt", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+  background-color: #bac1c9;
+  color: #252527;
+  margin: 0;
 }

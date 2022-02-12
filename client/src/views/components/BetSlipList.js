@@ -12,7 +12,7 @@ function BetSlipList(props) {
       <div className="bet-slip-title">Bet Slip</div>
       {!betSlipArray[0] && (
         <div className="betslip-item-box-center">
-          <div className="center-no-items">0 items in BetSlip.</div>
+          0 items in BetSlip
         </div>
       )}
       {betSlipArray[0] && (
