@@ -3,6 +3,7 @@ import "../../styles/BetSlipItem.css";
 
 function BetSlipItem(props) {
   const { cancelFromBetSlipArray, bet } = props;
+  // console.log(bet);
   return (
     <>
       {bet.typeOfBet === "moneyline" && (
@@ -10,7 +11,7 @@ function BetSlipItem(props) {
           <div className="betslip-item-box-space-between">
             <div className="cancel-and-bet-info">
               <button
-                onClick={(e) => e.preventDefault()}
+                onClick={() => cancelFromBetSlipArray(bet)}
                 className="betslip-cancel-button"
               >
                 cancel
@@ -30,7 +31,7 @@ function BetSlipItem(props) {
           <div className="betslip-item-box-space-between">
             <div className="cancel-and-bet-info">
               <button
-                onClick={(e) => e.preventDefault()}
+                onClick={() => cancelFromBetSlipArray(bet)}
                 className="betslip-cancel-button"
               >
                 cancel
@@ -50,7 +51,7 @@ function BetSlipItem(props) {
           <div className="betslip-item-box-space-between">
             <div className="cancel-and-bet-info">
               <button
-                onClick={(e) => e.preventDefault()}
+                onClick={() => cancelFromBetSlipArray(bet)}
                 className="betslip-cancel-button"
               >
                 cancel

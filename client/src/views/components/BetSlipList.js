@@ -24,6 +24,7 @@ function BetSlipList(props) {
         betSlipArray.map((bet, idx) => {
           return (
             <BetSlipItem
+              key={idx}
               cancelFromBetSlipArray={cancelFromBetSlipArray}
               bet={bet}
             />
