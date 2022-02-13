@@ -28,32 +28,33 @@ function Selectable(props) {
 
   const awayMl = {
     odds: awayMoneylineOdds,
-    team: awayTeam,
+    betOn: "away",
     teamsPlaying: teamsPlaying,
     typeOfBet: "moneyline",
   };
   const homeMl = {
     odds: homeMoneylineOdds,
-    team: homeTeam,
+    betOn: "home",
     teamsPlaying: teamsPlaying,
     typeOfBet: "moneyline",
   };
   const awaySp = {
     odds: awaySpreadOdds,
     spread: awaySpread,
-    team: awayTeam,
+    betOn: "away",
     teamsPlaying: teamsPlaying,
     typeOfBet: "spread",
   };
   const homeSp = {
     odds: homeSpreadOdds,
     spread: homeSpread,
-    team: homeTeam,
+    betOn: "home",
     teamsPlaying: teamsPlaying,
     typeOfBet: "spread",
   };
   const totalOver = {
     odds: overOdds,
+    betOn: "over",
     total: pointsForTotalOdds,
     teamsPlaying: teamsPlaying,
     typeOfBet: "total",
@@ -61,6 +62,7 @@ function Selectable(props) {
   const totalUnder = {
     odds: underOdds,
     total: pointsForTotalOdds,
+    betOn: "under",
     teamsPlaying: teamsPlaying,
     typeOfBet: "total",
   };
