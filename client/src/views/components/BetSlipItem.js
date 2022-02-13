@@ -2,26 +2,70 @@ import React from "react";
 import "../../styles/BetSlipItem.css";
 
 function BetSlipItem(props) {
-  const { cancelFromBetSlipArray } = props;
+  const { cancelFromBetSlipArray, bet } = props;
   return (
-    <div>
-      <div className="betslip-item-box-space-between">
-        <div className="cancel-and-bet-info">
-          <button
-            onClick={(e) => e.preventDefault()}
-            className="betslip-cancel-button"
-          >
-            cancel
-          </button>
-          <div className="team-bet-game">
-            <div>TOR Raptors</div>
-            <div>MONEYLINE</div>
-            <div>Toronto @ Miami</div>
+    <>
+      {bet.typeOfBet === "moneyline" && (
+        <div>
+          <div className="betslip-item-box-space-between">
+            <div className="cancel-and-bet-info">
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="betslip-cancel-button"
+              >
+                cancel
+              </button>
+              <div className="team-bet-game">
+                <div>{bet.teamsPlaying}</div>
+                <div>MONEYLINE</div>
+                <div>Bet on: {bet.betOn}</div>
+              </div>
+            </div>
+            <div className="odds-on-slip">{bet.odds}</div>
           </div>
         </div>
-        <div className="odds-on-slip">-120</div>
-      </div>
-    </div>
+      )}
+      {bet.typeOfBet === "total" && (
+        <div>
+          <div className="betslip-item-box-space-between">
+            <div className="cancel-and-bet-info">
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="betslip-cancel-button"
+              >
+                cancel
+              </button>
+              <div className="team-bet-game">
+                <div>{bet.teamsPlaying}</div>
+                <div>TOTAL: {bet.total}</div>
+                <div>Bet on: {bet.betOn}</div>
+              </div>
+            </div>
+            <div className="odds-on-slip">{bet.odds}</div>
+          </div>
+        </div>
+      )}
+      {bet.typeOfBet === "spread" && (
+        <div>
+          <div className="betslip-item-box-space-between">
+            <div className="cancel-and-bet-info">
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="betslip-cancel-button"
+              >
+                cancel
+              </button>
+              <div className="team-bet-game">
+                <div>{bet.teamsPlaying}</div>
+                <div>SPREAD: {bet.spread}</div>
+                <div>Bet on: {bet.betOn}</div>
+              </div>
+            </div>
+            <div className="odds-on-slip">{bet.odds}</div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

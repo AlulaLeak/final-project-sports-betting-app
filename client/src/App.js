@@ -15,7 +15,7 @@ function App() {
       axios
         .post("http://localhost:3016/users", user) // changed to my backend port
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (err) {
           console.error(err);
@@ -24,7 +24,6 @@ function App() {
 
   return (
     <div>
-      {/* <Navbar /> */}
       {isLoading ? <div>Loading</div> : isAuthenticated ? <Home /> : <Login />}
     </div>
   );

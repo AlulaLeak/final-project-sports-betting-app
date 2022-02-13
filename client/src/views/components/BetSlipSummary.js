@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/BetSlipSummary.css";
 
 function BetSlipSummary(props) {
-  const { betSlipArray } = props;
+  const { betSlipArray, setAmountWagered, getPotentialPayout } = props;
 
   return (
     <>
@@ -15,13 +15,13 @@ function BetSlipSummary(props) {
           <div>Total Wager</div>
           <div className="dollar-sign-input">
             <p>$</p>
-            <input />
+            <input onChange={(e) => setAmountWagered(e.target.value)} />
           </div>
         </div>
         <div className="cashout-title">CASH OUT</div>
         <div className="potential-payout">
           <div>Potential Payout</div>
-          <div>$238</div>
+          <div>{getPotentialPayout()}</div>
         </div>
         <button className="place-bet-button">Place Bet</button>
       </div>
