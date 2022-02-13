@@ -15,8 +15,13 @@ export function useBetSlip(initial) {
     setBetSlipArray([betToAdd, ...oldBets]);
   };
   function cancelFromBetSlipArray(betToCancel) {
+    console.log("this is the bet to cancel:", betToCancel);
     let newBetSlipArray = [];
-    newBetSlipArray = betSlipArray.filter((bet) => bet.id !== betToCancel.id); // Needs modification (what is bet.id?)
+    newBetSlipArray = betSlipArray.filter(
+      (bet) => bet.gameId !== betToCancel.gameId
+    );
+    console.log("This is the new betslip array:", newBetSlipArray);
+    // Needs modification (what is bet.id?)
     setBetSlipArray(newBetSlipArray);
   }
   function showBetSlipList() {
@@ -38,7 +43,9 @@ export function useBetSlip(initial) {
       } else {
         odds = 100 / Math.abs(singleBet.odds) + 1;
       }
-      return parseFloat((odds * amountWagered).toFixed(2)) * 0.95;
+      let singPotPayout = parseFloat((odds * amountWagered).toFixed(2)) * 0.95;
+      if (singPotPayout) return singPotPayout;
+      if (!singPotPayout) return 0;
     } else if (betSlipArray.length > 1) {
       betSlipArray.map((bet) => {
         allOddsAmerican.push(bet.odds);
@@ -53,7 +60,9 @@ export function useBetSlip(initial) {
       allOdds.map((eachnewOdd) => {
         currentOdd = currentOdd * eachnewOdd;
       });
-      return parseFloat((currentOdd * amountWagered).toFixed(2)) * 0.9;
+      let potPayout = parseFloat((currentOdd * amountWagered).toFixed(2)) * 0.9;
+      if (!potPayout) return 0;
+      if (potPayout) return potPayout;
     }
 
     return 0;

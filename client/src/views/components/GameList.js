@@ -2,7 +2,7 @@ import React from "react";
 import Game from "./Game";
 import { useFetch } from "../../helpers/useFetch";
 const GameList = (props) => {
-  const { leagueName, addToBetSlipArray } = props;
+  const { leagueName, addToBetSlipArray, betSlipArray } = props;
   const { games } = useFetch(leagueName);
 
   return (
@@ -14,6 +14,7 @@ const GameList = (props) => {
               <Game
                 key={game.gameId}
                 addToBetSlipArray={addToBetSlipArray}
+                betSlipArray={betSlipArray}
                 {...game}
               />
             ) : (

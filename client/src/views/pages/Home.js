@@ -30,7 +30,7 @@ function Home() {
       <Navbar />
       <HomeGreeting />
       <BetSlipList
-        cancelFromBetSlip={cancelFromBetSlipArray}
+        cancelFromBetSlipArray={cancelFromBetSlipArray}
         betSlipArray={betSlipArray}
         addToBetSlipArray={addToBetSlipArray}
         showBetSlipList={showBetSlipList}
@@ -48,6 +48,7 @@ function Home() {
           <GameList
             leagueName={leagueName}
             addToBetSlipArray={addToBetSlipArray}
+            betSlipArray={betSlipArray}
           />
           {/* <MockGameList addToBetSlipArray={addToBetSlipArray} /> */}
         </>

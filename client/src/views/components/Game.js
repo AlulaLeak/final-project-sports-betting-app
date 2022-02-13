@@ -11,7 +11,7 @@ function Game(props) {
   const SELECTABLE = "SELECTABLE";
   const CONFIRM = "CONFIRM";
   const BET_PLACED = "BET_PLACED";
-  const { addToBetSlipArray, ...game } = props;
+  const { addToBetSlipArray, betSlipArray, ...game } = props;
   const {
     details: { league },
     odds,
@@ -21,6 +21,7 @@ function Game(props) {
     summary,
     status,
     teams,
+    gameId,
   } = game;
 
   const homeTeam = teams.away.team;
@@ -32,10 +33,12 @@ function Game(props) {
   const periodTimeRemaining = scoreboard && scoreboard.periodTimeRemaining;
   const awayMoneylineOdds = odds && odds[0].moneyline.current.awayOdds;
   const homeMoneylineOdds = odds && odds[0].moneyline.current.homeOdds;
-  const awaySpread = odds && odds[0].spread.current.away;
-  const homeSpread = odds && odds[0].spread.current.home;
-  const awaySpreadOdds = odds && odds[0].spread.current.awayOdds;
-  const homeSpreadOdds = odds && odds[0].spread.current.homeOdds;
+  const awaySpread = odds && league !== "NHL" ? odds[0].spread.current.away : 0;
+  const homeSpread = odds && league !== "NHL" ? odds[0].spread.current.home : 0;
+  const awaySpreadOdds =
+    odds && league !== "NHL" ? odds[0].spread.current.awayOdds : 0;
+  const homeSpreadOdds =
+    odds && league !== "NHL" ? odds[0].spread.current.homeOdds : 0;
   const overOdds = odds && odds[0].total.current.overOdds;
   const underOdds = odds && odds[0].total.current.underOdds;
   const pointsForTotalOdds = odds && odds[0].total.current.total;
@@ -69,6 +72,8 @@ function Game(props) {
         league={league}
         transition={transition}
         addToBetSlipArray={addToBetSlipArray}
+        betSlipArray={betSlipArray}
+        gameId={gameId}
       />
       {viewMode === CONFIRM && (
         <Confirm
