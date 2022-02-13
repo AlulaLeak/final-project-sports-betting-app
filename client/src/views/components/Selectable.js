@@ -28,33 +28,33 @@ function Selectable(props) {
 
   const awayMl = {
     odds: awayMoneylineOdds,
-    betOn: "away",
+    betOn: "AWAY",
     teamsPlaying: teamsPlaying,
     typeOfBet: "moneyline",
   };
   const homeMl = {
     odds: homeMoneylineOdds,
-    betOn: "home",
+    betOn: "HOME",
     teamsPlaying: teamsPlaying,
     typeOfBet: "moneyline",
   };
   const awaySp = {
     odds: awaySpreadOdds,
     spread: awaySpread,
-    betOn: "away",
+    betOn: "AWAY",
     teamsPlaying: teamsPlaying,
     typeOfBet: "spread",
   };
   const homeSp = {
     odds: homeSpreadOdds,
     spread: homeSpread,
-    betOn: "home",
+    betOn: "HOME",
     teamsPlaying: teamsPlaying,
     typeOfBet: "spread",
   };
   const totalOver = {
     odds: overOdds,
-    betOn: "over",
+    betOn: "OVER",
     total: pointsForTotalOdds,
     teamsPlaying: teamsPlaying,
     typeOfBet: "total",
@@ -62,14 +62,13 @@ function Selectable(props) {
   const totalUnder = {
     odds: underOdds,
     total: pointsForTotalOdds,
-    betOn: "under",
+    betOn: "UNDER",
     teamsPlaying: teamsPlaying,
     typeOfBet: "total",
   };
 
   function confirmBet(betToAdd) {
     addToBetSlipArray(betToAdd);
-    console.log(betSlipArray);
   }
   return (
     <div className="fixture-card">

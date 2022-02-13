@@ -10,7 +10,7 @@ import { usePageMode } from "../../helpers/usePageMode";
 import { useBetSlip } from "../../helpers/useBetSlip";
 import "./Home.css";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 function Home() {
   const {
@@ -18,6 +18,8 @@ function Home() {
     cancelFromBetSlipArray,
     betSlipArray,
     showBetSlipList,
+    getPotentialPayout,
+    setAmountWagered,
   } = useBetSlip([]);
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
@@ -32,6 +34,8 @@ function Home() {
         betSlipArray={betSlipArray}
         addToBetSlipArray={addToBetSlipArray}
         showBetSlipList={showBetSlipList}
+        getPotentialPayout={getPotentialPayout}
+        setAmountWagered={setAmountWagered}
       />
       <ViewSelector
         setLeagueName={setLeagueName}
