@@ -9,6 +9,7 @@ function BetSlipList(props) {
     betSlipArray,
     getPotentialPayout,
     setAmountWagered,
+    placeBet,
   } = props;
 
   return (
@@ -34,6 +35,8 @@ function BetSlipList(props) {
         <BetSlipSummary
           getPotentialPayout={getPotentialPayout}
           setAmountWagered={setAmountWagered}
+          betSlipArray={betSlipArray}
+          placeBet={placeBet}
         />
       )}
     </>

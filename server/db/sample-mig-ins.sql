@@ -16,27 +16,12 @@ CREATE TABLE users (
 	nickname VARCHAR ( 50 ) UNIQUE NOT NULL
 );
 
-INSERT INTO users (
-  id,
-  name,
-  picture,
-  email,
-  nickname
-)
-  VALUES (
-    "google-oauth2|109718030698161816021",
-    "Alula Leakemariam",
-    "https://lh3.googleusercontent.com/a-/AOh14Gh85TCQWEupUrEmEjbhYDoBJq4S2o2RHFn9mAcR=s96-c",
-    "alula.leakemariam94@gmail.com",
-    "alula.leakemariam94"
-  );
-
 
 
 -- GAMES
 
 CREATE TABLE games (
-  id INTEGER PRIMARY KEY
+  id int PRIMARY KEY
 );
 
 INSERT INTO games (id)
@@ -49,7 +34,7 @@ INSERT INTO games (id)
 
 
 CREATE TABLE bet_slip (
-  id serial PRIMARY KEY,
+  id VARCHAR PRIMARY KEY,
   user_id VARCHAR references users(id),
   amount_wagered real NOT NULL,
   potential_payout real NOT NULL,
@@ -70,22 +55,27 @@ INSERT INTO bet_slip (
     current_timestamp
   );
 
+  -- GAMES
+CREATE TABLE games (
+  id int
+);
+
 
 
 
   -- SINGLE BET
 
 CREATE TABLE single_bet (
-  id serial PRIMARY KEY,
-  bet_slip_id int references bet_slip(id),
-  game_id int references games(id),
-  odds real NOT NULL,
-  spread real DEFAULT NULL,
-  total real DEFAULT NULL,
-  bet_on_home BOOLEAN DEFAULT NULL,
-  bet_on_away BOOLEAN DEFAULT NULL,
-  bet_on_over BOOLEAN DEFAULT NULL,
-  bet_on_under BOOLEAN DEFAULT NULL,
+  id serial PRIMARY KEY, --
+  bet_slip_id VARCHAR references bet_slip(id), --
+  game_id int references games(id), --
+  odds real NOT NULL, --
+  spread real DEFAULT NULL, --
+  total real DEFAULT NULL, --
+  bet_on_home BOOLEAN DEFAULT NULL, --
+  bet_on_away BOOLEAN DEFAULT NULL, --
+  bet_on_over BOOLEAN DEFAULT NULL, --
+  bet_on_under BOOLEAN DEFAULT NULL, --
   win BOOLEAN DEFAULT NULL
 );
 

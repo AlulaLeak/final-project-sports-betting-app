@@ -20,6 +20,7 @@ function Home() {
     showBetSlipList,
     getPotentialPayout,
     setAmountWagered,
+    placeBet,
   } = useBetSlip([]);
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
@@ -36,6 +37,7 @@ function Home() {
         showBetSlipList={showBetSlipList}
         getPotentialPayout={getPotentialPayout}
         setAmountWagered={setAmountWagered}
+        placeBet={placeBet}
       />
       <ViewSelector
         setLeagueName={setLeagueName}
