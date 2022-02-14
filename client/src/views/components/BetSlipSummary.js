@@ -1,9 +1,11 @@
 import React from "react";
 import "../../styles/BetSlipSummary.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function BetSlipSummary(props) {
-  const { betSlipArray, setAmountWagered, getPotentialPayout } = props;
-
+  const { betSlipArray, setAmountWagered, getPotentialPayout, placeBet } =
+    props;
+  const { user } = useAuth0();
   return (
     <>
       <div className="main-betslip-summary-box">
@@ -23,7 +25,15 @@ function BetSlipSummary(props) {
           <div>Potential Payout</div>
           <div>{getPotentialPayout()}</div>
         </div>
-        <button className="place-bet-button">Place Bet</button>
+        <button
+          className="place-bet-button"
+          onClick={() => {
+            // console.log("betSlipparray and user", betSlipArray, user);
+            placeBet();
+          }}
+        >
+          Place Bet
+        </button>
       </div>
     </>
   );

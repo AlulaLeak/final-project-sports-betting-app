@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useVisualMode } from "./useVisualMode";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export function useBetSlip(initial) {
   const SELECTABLE = "SELECTABLE";
@@ -7,7 +9,9 @@ export function useBetSlip(initial) {
   const [betSlipArray, setBetSlipArray] = useState(initial);
   const [amountWagered, setAmountWagered] = useState(0);
   const [singleBet, setSingleBet] = useState({});
+  const [potentialPayout, setPotentialPayout] = useState();
   const { transition } = useVisualMode(SELECTABLE);
+  const { user } = useAuth0();
 
   const addToBetSlipArray = (betToAdd) => {
     let oldBets = betSlipArray;
@@ -44,8 +48,14 @@ export function useBetSlip(initial) {
         odds = 100 / Math.abs(singleBet.odds) + 1;
       }
       let singPotPayout = parseFloat((odds * amountWagered).toFixed(2)) * 0.95;
-      if (singPotPayout) return singPotPayout;
-      if (!singPotPayout) return 0;
+      if (singPotPayout) {
+        setPotentialPayout(singPotPayout);
+        return singPotPayout;
+      }
+      if (!singPotPayout) {
+        setPotentialPayout(0);
+        return 0;
+      }
     } else if (betSlipArray.length > 1) {
       betSlipArray.map((bet) => {
         allOddsAmerican.push(bet.odds);
@@ -61,11 +71,42 @@ export function useBetSlip(initial) {
         currentOdd = currentOdd * eachnewOdd;
       });
       let potPayout = parseFloat((currentOdd * amountWagered).toFixed(2)) * 0.9;
-      if (!potPayout) return 0;
-      if (potPayout) return potPayout;
+      if (!potPayout) {
+        setPotentialPayout(0);
+        return 0;
+      }
+      if (potPayout) {
+        setPotentialPayout(potPayout);
+        return potPayout;
+      }
     }
-
+    setPotentialPayout(0);
     return 0;
+  }
+
+  function placeBet() {
+    console.log(
+      "betslip passed to server:",
+      user.sub,
+      betSlipArray,
+      amountWagered,
+      potentialPayout
+    );
+    const options = {
+      userId: user.sub,
+      betSlipArray,
+      amountWagered,
+      potentialPayout,
+    };
+
+    axios
+      .post("http://localhost:3016/placebet", options) // changed to my backend port
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
   }
 
   return {
@@ -75,5 +116,6 @@ export function useBetSlip(initial) {
     betSlipArray,
     getPotentialPayout,
     setAmountWagered,
+    placeBet,
   };
 }
