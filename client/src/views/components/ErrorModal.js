@@ -17,9 +17,8 @@ function ErrorModal(props) {
       </Modal.Header>
       <Modal.Body>
         {/* <h4>Centered Modal</h4> */}
-        <h4>
-          You have already added this bet to your slip.
-        </h4>
+        <p className='error-message'>You cannot place bets on the same team, in a single parlay.</p>
+        <p className='error-message'>Finish placing your bet above or add bets from other games before adding another to your bet slip.</p>
       </Modal.Body>
       <Modal.Footer>
         <Button className="error-header" onClick={props.onHide}>Close</Button>
