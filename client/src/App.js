@@ -26,6 +26,7 @@ function App() {
     <div>
       {isLoading ? <div>Loading</div> : isAuthenticated ? <Home /> : <Login />}
     </div>
+    
   );
 }
 
