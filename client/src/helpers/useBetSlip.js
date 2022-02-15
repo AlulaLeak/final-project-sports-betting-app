@@ -34,8 +34,8 @@ export function useBetSlip(initial) {
   }
 
   function cancelAllFromBetSlipArray() {
-    placeBet();  
-    setBetSlipArray([]); 
+    placeBet();
+    setBetSlipArray([]);
     setModalShow(true);
   }
 

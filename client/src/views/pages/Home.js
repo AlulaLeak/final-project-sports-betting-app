@@ -32,7 +32,7 @@ function Home() {
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
   const [leagueName, setLeagueName] = useState("");
-  
+
   return (
     <div className="home-greeting-event-separator">
       <Navbar />
@@ -66,13 +66,13 @@ function Home() {
         </>
       )}
       <Footer />
-        <ModalMessage
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          type="alert"
-          header="Alert"
-          message1="Your bet has been placed!"
-        />      
+      <ModalMessage
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        type="alert"
+        header="Alert"
+        message1="Your bet has been placed!"
+      />
     </div>
   );
 }
