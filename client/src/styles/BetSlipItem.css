@@ -1,5 +1,5 @@
 .betslip-item-box-space-between {
-  border: 1px solid rgb(110, 177, 89);
+  border: 1px solid red;
   width: auto;
   display: flex;
   border-radius: 5px;
@@ -8,6 +8,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+  color: white;
 }
 
 .betslip-item-box-center { 
@@ -17,12 +18,15 @@
   font-size: 25px;
   font-weight: 500;
   background-color: #a0a4ab;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .team-bet-game {
+  left: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding-left: 20px;
 }
 
 .odds-on-slip {
@@ -37,9 +41,14 @@
 }
 
 .betslip-cancel-button {
-  background-color: black;
-  border-right: 3px solid rgb(110, 177, 89);
-  margin-right: 10px;
+  display: block;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    background: red;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
 }
 
 .bet-slip-title {

@@ -1,5 +1,5 @@
 .main-betslip-summary-box {
-  border: 1px solid rgb(110, 177, 89);
+  border: 1px solid red;
   width: auto;
   display: flex;
   border-radius: 5px;
@@ -17,6 +17,7 @@
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 10px;
+  color: white;
 }
 
 .bet-type-summary-title {
@@ -33,6 +34,7 @@
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px;
+  color: white;
 }
 
 .cashout-title {
@@ -41,6 +43,7 @@
   justify-content: center;
   margin-top: 11px;
   font-size: 18px;
+  color: white;
 }
 
 .dollar-sign-input {
@@ -51,4 +54,11 @@
 .place-bet-button {
   min-height: 45px;
   margin-top: 11px;
+  border-radius: 5px;
+  font-family: 'Bebas Neue', cursive;
+  width: 50%;
+  left: 25%;
+  position: relative;
+  background-color: red;
+  color: white;
 }

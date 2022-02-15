@@ -1,5 +1,7 @@
 /* .navbarWrapper {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 } */
 .Navbar {
   background-color: #1b1b1c;
@@ -15,6 +17,7 @@
   /* border-radius: 10px; */
   /* width: auto; creates that fluidity */
   /* margin: 20px; */
+  padding-top: 10px;
 }
 
 .logoImg {

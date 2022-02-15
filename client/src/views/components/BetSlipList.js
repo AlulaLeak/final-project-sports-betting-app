@@ -9,7 +9,6 @@ function BetSlipList(props) {
 
   return (
     <>
-      <div className="bet-slip-title">Bet Slip</div>
       {!betSlipArray[0] && (
         <div className="betslip-item-box-center">
           0 items in BetSlip
