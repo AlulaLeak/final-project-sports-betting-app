@@ -12,6 +12,7 @@ import "./Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import OnGoingBetList from "../components/OnGoingBetList";
+import ModalMessage from "../components/ModalMessage"
 
 function Home() {
   const {
@@ -23,6 +24,10 @@ function Home() {
     setAmountWagered,
     placeBet,
     getOnGoingBets,
+    cancelAllFromBetSlipArray,
+    modalShow,
+    setModalShow
+
   } = useBetSlip([]);
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
@@ -33,6 +38,7 @@ function Home() {
       <Navbar />
       <HomeGreeting />
       <BetSlipList
+        cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
         cancelFromBetSlipArray={cancelFromBetSlipArray}
         betSlipArray={betSlipArray}
         addToBetSlipArray={addToBetSlipArray}
@@ -60,6 +66,13 @@ function Home() {
         </>
       )}
       <Footer />
+      <ModalMessage
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        type="alert"
+        header="Alert"
+        message1="Your bet has been placed!"
+      />
     </div>
   );
 }

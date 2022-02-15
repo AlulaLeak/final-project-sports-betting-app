@@ -1,0 +1,20 @@
+.error-header {
+  background-color: #ec121f;
+  font-weight: 700;
+}
+
+.error-message {
+  font-size: 19px;
+  text-align: center;
+}
+
+.alert-header {
+  background-color: #bac1c9;
+  color: #ec121f;
+  font-weight: 700;
+}
+
+.alert-message {
+  font-size: 19px;
+  text-align: center;
+}

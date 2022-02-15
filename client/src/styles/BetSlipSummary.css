@@ -21,6 +21,7 @@
 }
 
 .bet-type-summary-title {
+  color: #bac1c9;
   display: flex;
   flex-direction: row;
   justify-content: center;

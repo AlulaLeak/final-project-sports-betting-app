@@ -13,13 +13,14 @@ export function useBetSlip(initial) {
   const { transition } = useVisualMode(SELECTABLE);
   const { user } = useAuth0();
 
+  const [modalShow, setModalShow] = useState(false);
+
   const addToBetSlipArray = (betToAdd) => {
     let oldBets = betSlipArray;
     transition(BET_PLACED); // not working no matter where I put it
     setBetSlipArray([betToAdd, ...oldBets]);
   };
   function cancelFromBetSlipArray(betToCancel) {
-    console.log("this is the bet to cancel:", betToCancel);
     let newBetSlipArray = [];
     newBetSlipArray = betSlipArray.filter(
       (bet) => bet.gameId !== betToCancel.gameId
@@ -30,6 +31,12 @@ export function useBetSlip(initial) {
   }
   function showBetSlipList() {
     return betSlipArray.length > 0 ? true : false;
+  }
+
+  function cancelAllFromBetSlipArray() {
+    placeBet();
+    setBetSlipArray([]);
+    setModalShow(true);
   }
 
   // Seeing potential payout of betSlipArray
@@ -117,5 +124,9 @@ export function useBetSlip(initial) {
     getPotentialPayout,
     setAmountWagered,
     placeBet,
+    getOnGoingBets,
+    cancelAllFromBetSlipArray,
+    setModalShow,
+    modalShow
   };
 }
