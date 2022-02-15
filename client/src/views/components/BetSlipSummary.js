@@ -13,10 +13,8 @@ function BetSlipSummary(props) {
   return (
     <>
       <div className="main-betslip-summary-box">
-        {betSlipArray && <div className="bet-type-summary-title">Parlay</div>}
-        {betSlipArray && (
-          <div className="bet-type-summary-title">Single Bet</div>
-        )}
+        {betSlipArray.length > 1 && <div className="bet-type-summary-title">Parlay</div>}
+        {betSlipArray.length === 1 && <div className="bet-type-summary-title">Single Bet</div>}
         <div className="total-wager">
           <div>Total Wager</div>
           <div className="dollar-sign-input">
