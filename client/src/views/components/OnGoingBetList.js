@@ -1,12 +1,16 @@
 import React from "react";
 import OnGoingBetItem from "./OnGoingBetItem";
+import { useOngoingBets } from "../../helpers/useOnGoingBets";
 
-function OnGoingBetList(props) {
-  const { getOnGoingBets } = props;
+function OnGoingBetList() {
+  const { usersOnGoingBets } = useOngoingBets();
+
   return (
     <>
-      {/* {getOnGoingBets ? <OnGoingBetItem /> : <h1>Loading</h1>} */}
-      <OnGoingBetItem getOnGoingBets={getOnGoingBets} />
+      {usersOnGoingBets &&
+        usersOnGoingBets.map((onGoingBetSlip, idx) => {
+          return <OnGoingBetItem key={idx} onGoingBetSlip={onGoingBetSlip} />;
+        })}
     </>
   );
 }

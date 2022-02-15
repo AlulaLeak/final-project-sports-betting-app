@@ -24,7 +24,7 @@ export function useBetSlip(initial) {
     newBetSlipArray = betSlipArray.filter(
       (bet) => bet.gameId !== betToCancel.gameId
     );
-    console.log("This is the new betslip array:", newBetSlipArray);
+    // console.log("This is the new betslip array:", newBetSlipArray);
     // Needs modification (what is bet.id?)
     setBetSlipArray(newBetSlipArray);
   }
@@ -102,21 +102,7 @@ export function useBetSlip(initial) {
     axios
       .post("http://localhost:3019/placebet", options) // changed to my backend port
       .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-  }
-
-  function getOnGoingBets() {
-    const options = {
-      userId: user.sub,
-    };
-    axios
-      .post("http://localhost:3019/seebets", options) // changed to my backend port
-      .then(function (response) {
-        console.log("These are the on-going bet slips:", response);
+        // console.log(response);
       })
       .catch(function (err) {
         console.error(err);
@@ -131,6 +117,5 @@ export function useBetSlip(initial) {
     getPotentialPayout,
     setAmountWagered,
     placeBet,
-    getOnGoingBets,
   };
 }
