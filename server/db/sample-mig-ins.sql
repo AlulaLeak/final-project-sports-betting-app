@@ -140,3 +140,10 @@ INSERT INTO single_bet (
     5,
     TRUE
   );
+INSERT INTO games
+    (id)
+SELECT $1,
+WHERE
+    NOT EXISTS (
+        SELECT id FROM games WHERE id = $1
+    );

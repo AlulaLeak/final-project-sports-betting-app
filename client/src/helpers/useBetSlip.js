@@ -100,7 +100,7 @@ export function useBetSlip(initial) {
     };
 
     axios
-      .post("http://localhost:3016/placebet", options) // changed to my backend port
+      .post("http://localhost:3018/placebet", options) // changed to my backend port
       .then(function (response) {
         console.log(response);
       })
