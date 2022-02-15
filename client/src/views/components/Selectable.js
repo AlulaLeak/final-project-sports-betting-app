@@ -1,7 +1,10 @@
 import React from "react";
+import ErrorModal from "./ErrorModal";
+import { useState } from "react";
 
 function Selectable(props) {
   const BET_PLACED = "BET_PLACED";
+  const [modalShow, setModalShow] = useState(false);
 
   const {
     awayScore,
@@ -75,12 +78,17 @@ function Selectable(props) {
   };
 
   function confirmBet(betToAdd) {
-    betSlipArray.map((bet) => {
-      bet.gameId === betToAdd.gameId && console.log("game already exists!"); // need to replace console log with error message
-    });
 
-    addToBetSlipArray(betToAdd);
+    let exists = false;
+    betSlipArray.map((bet) => {
+      if (bet.gameId === betToAdd.gameId) {
+        exists = true;
+        setModalShow(true);
+      }
+    });
+    !exists && addToBetSlipArray(betToAdd);
   }
+
   return (
     <div className="fixture-card">
       {league === "NBA" && <div><svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="body_1" width="24" height="50">
@@ -189,7 +197,7 @@ function Selectable(props) {
           <div className="total-and-spread-points">moneyline</div>
           <button
             type="submit"
-            onClick={(e) => confirmBet(homeMl)}
+            onClick={() => confirmBet(homeMl)}
             value={homeMl}
             className="total-and-spread-alignment"
           >
@@ -199,7 +207,7 @@ function Selectable(props) {
         <div className="odds">
           <button
             type="submit"
-            onClick={(e) => confirmBet(awaySp)}
+            onClick={() => confirmBet(awaySp)}
             value={awaySp}
             className="total-and-spread-alignment"
           >
@@ -209,7 +217,7 @@ function Selectable(props) {
           <div className="total-and-spread-points">spread</div>
           <button
             type="submit"
-            onClick={(e) => confirmBet(homeSp)}
+            onClick={() => confirmBet(homeSp)}
             value={homeSp}
             className="total-and-spread-alignment"
           >
@@ -220,7 +228,7 @@ function Selectable(props) {
         <div className="odds">
           <button
             type="submit"
-            onClick={(e) => confirmBet(totalOver)}
+            onClick={() => confirmBet(totalOver)}
             value={totalOver}
             className="total-and-spread-alignment"
           >
@@ -232,7 +240,7 @@ function Selectable(props) {
           </div>
           <button
             type="submit"
-            onClick={(e) => confirmBet(totalUnder)}
+            onClick={() => confirmBet(totalUnder)}
             value={totalUnder}
             className="total-and-spread-alignment"
           >
@@ -241,6 +249,10 @@ function Selectable(props) {
           </button>
         </div>
       </div>
+      <ErrorModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }

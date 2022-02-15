@@ -1,0 +1,9 @@
+.error-header {
+  background-color: #ec121f;
+  font-weight: 700;
+}
+
+.error-message {
+  font-size: 19px;
+  text-align: center;
+}
