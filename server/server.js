@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 3018;
+const PORT = process.env.PORT || 3019;
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -12,6 +12,7 @@ const bodyParser = require("body-parser");
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
+const { response } = require("express");
 const db = new Pool(dbParams);
 db.connect();
 
@@ -254,6 +255,31 @@ app.post("/placebet", (req, res) => {
     })
 
     .catch((e) => console.error(e.stack));
+});
+
+app.post("/seebets", (req, res) => {
+  const { userId } = req.body;
+
+  const getOnGoingBetSlipValue = [userId];
+  const getOnGoingBetSlipQuery = `SELECT id FROM bet_slip WHERE user_id = $1 AND win IS NULL`; // I want all bet slips from user
+  let betSlipArray = [];
+  db.query(getOnGoingBetSlipQuery, getOnGoingBetSlipValue).then((response) => {
+    const betSlipArrayOfIds = response.rows;
+    betSlipArrayOfIds.map((betSlip) => {
+      const getOnGoingSingleBetsPerBetSlipValue = [betSlip.id];
+      const getOnGoingSingleBetsPerBetSlipQuery = `SELECT * FROM single_bet WHERE bet_slip_id = $1 AND win IS NULL`; // I want all bet slips from user
+      db.query(
+        getOnGoingSingleBetsPerBetSlipQuery,
+        getOnGoingSingleBetsPerBetSlipValue
+      ).then((response) => {
+        let bet = response.rows;
+        betSlipArray = [...betSlipArray, bet];
+        betSlipArrayOfIds.length === betSlipArray.length &&
+          res.send(betSlipArray);
+        console.log("This should be a full bet slip array:", betSlipArray);
+      });
+    });
+  });
 });
 
 app.listen(PORT, () => {
