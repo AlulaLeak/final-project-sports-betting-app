@@ -11,6 +11,7 @@ import { useBetSlip } from "../../helpers/useBetSlip";
 import "./Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import OnGoingBetList from "../components/OnGoingBetList";
 
 function Home() {
   const {
@@ -21,6 +22,7 @@ function Home() {
     getPotentialPayout,
     setAmountWagered,
     placeBet,
+    getOnGoingBets,
   } = useBetSlip([]);
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
@@ -43,7 +45,9 @@ function Home() {
         setLeagueName={setLeagueName}
         transitionPage={transitionPage}
       />
-      {pageMode === "PROFILE" && <div>hi</div>}
+      {pageMode === "PROFILE" && (
+        <OnGoingBetList getOnGoingBets={getOnGoingBets} />
+      )}
       {pageMode === "GAMES" && (
         <>
           <LeagueSelector setLeagueName={setLeagueName} />
