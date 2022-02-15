@@ -32,15 +32,33 @@ app.post("/users", (req, res) => {
 
   const { name, picture, sub: id, email, nickname } = req.body;
   const selectUserValues = [id];
-  const selectionQueryString = "SELECT * FROM users WHERE id = $1";
+  const selectionQueryString = `
+  SELECT *
+  FROM users
+  WHERE id = $1
+  `;
 
   db.query(selectionQueryString, selectUserValues)
     .then((response) => {
       const insertionValues = name
         ? [name, picture, id, email, nickname]
         : [email, "", randomStringId, email, email];
-      const insertionQueryString =
-        "INSERT INTO users(name, picture, id, email, nickname)VALUES($1, $2, $3, $4, $5) RETURNING *";
+      const insertionQueryString = `
+      INSERT INTO users(
+          name,
+          picture,
+          id,
+          email,
+          nickname
+          )
+      VALUES(
+          $1,
+          $2,
+          $3,
+          $4,
+          $5
+          )
+      RETURNING *`;
       !response.rows[0] &&
         db
           .query(insertionQueryString, insertionValues)
@@ -59,19 +77,46 @@ app.post("/placebet", (req, res) => {
   // map through bet Slip Array to check if game exists and insert to table(games) if so
   // Insert betslip into db
   const betSlipValue = [betSlipId, userId, amountWagered, potentialPayout];
-  const insertIntoBetSlip =
-    "INSERT INTO bet_slip(id, user_id, amount_wagered, potential_payout, created_on)VALUES($1, $2, $3, $4, current_timestamp) RETURNING *;";
+  const insertIntoBetSlip = `
+  INSERT INTO bet_slip(
+    id,
+    user_id,
+    amount_wagered,
+    potential_payout,
+    created_on
+    )
+  VALUES(
+    $1,
+    $2,
+    $3,
+    $4,
+    current_timestamp
+    )
+  RETURNING *;
+  `;
   db.query(insertIntoBetSlip, betSlipValue)
     .then((res) => {
       betSlipArray.map((bet) => {
         const selectValues = [bet.gameId];
-        const selectQueryString = "SELECT id FROM games WHERE id = $1;";
+        const selectQueryString = `
+        SELECT id
+        FROM games
+        WHERE id = $1;
+        `;
         db.query(selectQueryString, selectValues).then((res) => {
           if (!res.rows[0]) {
             // Insert game into db (IF NOT ALREADY)
             const insValues = [bet.gameId, bet.teamsPlaying];
-            const insQueryString =
-              "INSERT INTO games(id, teams_playing) VALUES ($1, $2);";
+            const insQueryString = `
+            INSERT INTO games(
+              id,
+              teams_playing
+              )
+            VALUES (
+              $1,
+              $2
+              );
+            `;
             db.query(insQueryString, insValues).then((res) => {
               // Insert single-bet into betslip
               if (bet.betOn === "HOME") {
@@ -82,8 +127,19 @@ app.post("/placebet", (req, res) => {
                     bet.odds,
                     true,
                   ];
-                  const moneylineHomeQuery =
-                    "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_home)VALUES($1, $2, $3, $4) RETURNING *;";
+                  const moneylineHomeQuery = `INSERT INTO single_bet(
+                      bet_slip_id,
+                      game_id,
+                      odds,
+                      bet_on_home
+                      )
+                    VALUES(
+                      $1,
+                      $2,
+                      $3,
+                      $4
+                      )
+                    RETURNING *;`;
                   db.query(moneylineHomeQuery, moneylineHomeValues)
                     .then((res) => {})
                     .catch((e) => console.error(e.stack));
@@ -96,8 +152,23 @@ app.post("/placebet", (req, res) => {
                     true,
                     bet.spread,
                   ];
-                  const spreadHomeQuery =
-                    "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_home, spread)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+                  const spreadHomeQuery = `
+                  INSERT INTO single_bet(
+                    bet_slip_id,
+                    game_id,
+                    odds,
+                    bet_on_home,
+                    spread
+                    )
+                  VALUES(
+                    $1,
+                    $2,
+                    $3,
+                    $4,
+                    $5
+                    )
+                  RETURNING *;
+                  `;
                   db.query(spreadHomeQuery, spreadHomeValues)
                     .then((res) => {})
                     .catch((e) => console.error(e.stack));
@@ -111,8 +182,20 @@ app.post("/placebet", (req, res) => {
                     bet.odds,
                     true,
                   ];
-                  const moneylineAwayQuery =
-                    "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_away) VALUES($1, $2, $3, $4) RETURNING *;";
+                  const moneylineAwayQuery = `
+                  INSERT INTO single_bet(
+                    bet_slip_id,
+                    game_id, odds,
+                    bet_on_away
+                    )
+                  VALUES(
+                    $1,
+                    $2,
+                    $3,
+                    $4
+                    )
+                  RETURNING *;
+                  `;
                   db.query(moneylineAwayQuery, moneylineAwayValues)
                     .then((res) => {})
                     .catch((e) => console.error(e.stack));
@@ -125,8 +208,23 @@ app.post("/placebet", (req, res) => {
                     true,
                     bet.spread,
                   ];
-                  const spreadAwayQuery =
-                    "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_away, spread)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+                  const spreadAwayQuery = `
+                  INSERT INTO single_bet(
+                    bet_slip_id,
+                    game_id,
+                    odds,
+                    bet_on_away,
+                    spread
+                    )
+                  VALUES(
+                    $1,
+                    $2,
+                    $3,
+                    $4,
+                    $5
+                    )
+                  RETURNING *;
+                  `;
                   db.query(spreadAwayQuery, spreadAwayValues)
                     .then((res) => {})
                     .catch((e) => console.error(e.stack));
@@ -140,8 +238,23 @@ app.post("/placebet", (req, res) => {
                   true,
                   bet.total,
                 ];
-                const overQuery =
-                  "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_over, total)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+                const overQuery = `
+                INSERT INTO single_bet(
+                  bet_slip_id,
+                  game_id,
+                  odds,
+                  bet_on_over,
+                  total
+                  )
+                VALUES(
+                  $1,
+                  $2,
+                  $3,
+                  $4,
+                  $5
+                  )
+                RETURNING *;
+                `;
                 db.query(overQuery, overValues)
                   .then((res) => {})
                   .catch((e) => console.error(e.stack));
@@ -154,8 +267,23 @@ app.post("/placebet", (req, res) => {
                   true,
                   bet.total,
                 ];
-                const underQuery =
-                  "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_under, total)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+                const underQuery = `
+                INSERT INTO single_bet(
+                  bet_slip_id,
+                  game_id,
+                  odds,
+                  bet_on_under,
+                  total
+                  )
+                VALUES(
+                  $1,
+                  $2,
+                  $3,
+                  $4,
+                  $5
+                  )
+                RETURNING *;
+                `;
                 db.query(underQuery, underValues)
                   .then((res) => {})
                   .catch((e) => console.error(e.stack));
@@ -171,8 +299,15 @@ app.post("/placebet", (req, res) => {
                   bet.odds,
                   true,
                 ];
-                const moneylineHomeQuery =
-                  "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_home)VALUES($1, $2, $3, $4) RETURNING *;";
+                const moneylineHomeQuery = `
+                INSERT INTO single_bet(
+                  bet_slip_id,
+                  game_id,
+                  odds,
+                  bet_on_home
+                  )
+                VALUES($1, $2, $3, $4) RETURNING *;
+                `;
                 db.query(moneylineHomeQuery, moneylineHomeValues).catch((e) =>
                   console.error(e.stack)
                 );
@@ -185,8 +320,16 @@ app.post("/placebet", (req, res) => {
                   true,
                   bet.spread,
                 ];
-                const spreadHomeQuery =
-                  "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_home, spread)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+                const spreadHomeQuery = `
+                INSERT INTO single_bet(
+                  bet_slip_id,
+                  game_id,
+                  odds,
+                  bet_on_home,
+                  spread
+                  )
+                VALUES($1, $2, $3, $4, $5) RETURNING *;
+                `;
                 db.query(spreadHomeQuery, spreadHomeValues).catch((e) =>
                   console.error(e.stack)
                 );
@@ -200,8 +343,15 @@ app.post("/placebet", (req, res) => {
                   bet.odds,
                   true,
                 ];
-                const moneylineAwayQuery =
-                  "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_away) VALUES($1, $2, $3, $4) RETURNING *;";
+                const moneylineAwayQuery = `
+                  INSERT INTO single_bet(
+                    bet_slip_id,
+                    game_id,
+                    odds,
+                    bet_on_away
+                    )
+                  VALUES($1, $2, $3, $4) RETURNING *;
+                  `;
                 db.query(moneylineAwayQuery, moneylineAwayValues).catch((e) =>
                   console.error(e.stack)
                 );
@@ -214,8 +364,16 @@ app.post("/placebet", (req, res) => {
                   true,
                   bet.spread,
                 ];
-                const spreadAwayQuery =
-                  "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_away, spread)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+                const spreadAwayQuery = `
+                  INSERT INTO single_bet(
+                    bet_slip_id,
+                    game_id,
+                    odds,
+                    bet_on_away,
+                    spread
+                    )
+                  VALUES($1, $2, $3, $4, $5) RETURNING *;
+                  `;
                 db.query(spreadAwayQuery, spreadAwayValues).catch((e) =>
                   console.error(e.stack)
                 );
@@ -230,8 +388,16 @@ app.post("/placebet", (req, res) => {
                 true,
                 bet.total,
               ];
-              const overQuery =
-                "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_over, total)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+              const overQuery = `
+                INSERT INTO single_bet(
+                  bet_slip_id,
+                  game_id,
+                  odds,
+                  bet_on_over,
+                  total
+                  )
+                VALUES($1, $2, $3, $4, $5) RETURNING *;
+                `;
               db.query(overQuery, overValues).catch((e) =>
                 console.error(e.stack)
               );
@@ -244,8 +410,16 @@ app.post("/placebet", (req, res) => {
                 true,
                 bet.total,
               ];
-              const underQuery =
-                "INSERT INTO single_bet(bet_slip_id, game_id, odds, bet_on_under, total)VALUES($1, $2, $3, $4, $5) RETURNING *;";
+              const underQuery = `
+                INSERT INTO single_bet(
+                  bet_slip_id,
+                  game_id,
+                  odds,
+                  bet_on_under,
+                  total
+                  )
+                VALUES($1, $2, $3, $4, $5) RETURNING *;
+                `;
               db.query(underQuery, underValues).catch((e) =>
                 console.error(e.stack)
               );
@@ -262,7 +436,12 @@ app.post("/seebets", (req, res) => {
   const { userId } = req.body;
 
   const getOnGoingBetSlipValue = [userId];
-  const getOnGoingBetSlipQuery = `SELECT id FROM bet_slip WHERE user_id = $1 AND win IS NULL`; // I want all bet slips from user
+  const getOnGoingBetSlipQuery = `
+  SELECT id
+  FROM bet_slip
+  WHERE user_id = $1 AND win IS NULL;
+    `;
+
   let betSlipArray = [];
   db.query(getOnGoingBetSlipQuery, getOnGoingBetSlipValue)
     .then((response) => {
@@ -286,20 +465,16 @@ app.post("/seebets", (req, res) => {
           getOnGoingSingleBetsPerBetSlipQuery,
           getOnGoingSingleBetsPerBetSlipValue
         ).then((response) => {
-          let bet = response.rows;
-          betSlipArray.push(bet);
+          let betSlip = response.rows;
+          betSlipArray.push(betSlip);
           betSlipArrayOfIds.length === betSlipArray.length &&
-            console.log("This is the bet-slip array:", betSlipArray);
+            res.send(betSlipArray);
         });
       });
     })
-    .then((aresponse) => {
-      res.send(betSlipArray);
-    });
+    .then((aresponse) => {});
 });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
-
-// `SELECT *, games.teams_playing, bet_slip.amount_wagered FROM single_bet JOIN games ON games.id = game_id JOIN bet_slip ON bet_slip.id = bet_slip_id WHERE bet_slip_id = $1 AND win IS NULL`;
