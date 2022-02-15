@@ -33,13 +33,6 @@ function BetSlipSummary(props) {
             cancelAllFromBetSlipArray();
           }}
         >Place Bet</button>
-        <ModalMessage
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          type="alert"
-          header="Alert"
-          message1="Your bet has been placed!"
-        />
       </div>
     </>
   );

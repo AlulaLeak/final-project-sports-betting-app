@@ -25,13 +25,14 @@ function Home() {
     placeBet,
     getOnGoingBets,
     cancelAllFromBetSlipArray,
-  } = useBetSlip([]);
+    modalShow,
+    setModalShow
 
-  // const [modalShow, setModalShow] = useState(false);
+  } = useBetSlip([]);
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
   const [leagueName, setLeagueName] = useState("");
-
+  
   return (
     <div className="home-greeting-event-separator">
       <Navbar />
@@ -65,7 +66,13 @@ function Home() {
         </>
       )}
       <Footer />
-      
+        <ModalMessage
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          type="alert"
+          header="Alert"
+          message1="Your bet has been placed!"
+        />      
     </div>
   );
 }

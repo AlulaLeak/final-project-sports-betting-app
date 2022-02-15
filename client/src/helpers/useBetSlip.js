@@ -21,7 +21,6 @@ export function useBetSlip(initial) {
     setBetSlipArray([betToAdd, ...oldBets]);
   };
   function cancelFromBetSlipArray(betToCancel) {
-    console.log("this is the bet to cancel:", betToCancel);
     let newBetSlipArray = [];
     newBetSlipArray = betSlipArray.filter(
       (bet) => bet.gameId !== betToCancel.gameId
@@ -37,7 +36,7 @@ export function useBetSlip(initial) {
   function cancelAllFromBetSlipArray() {
     placeBet();  
     setBetSlipArray([]); 
-    setModalShow(true)   
+    setModalShow(true);
   }
 
   // Seeing potential payout of betSlipArray
@@ -140,6 +139,8 @@ export function useBetSlip(initial) {
     setAmountWagered,
     placeBet,
     getOnGoingBets,
-    cancelAllFromBetSlipArray    
+    cancelAllFromBetSlipArray,
+    setModalShow,
+    modalShow
   };
 }
