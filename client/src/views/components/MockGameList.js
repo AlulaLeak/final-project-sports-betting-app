@@ -5,7 +5,6 @@ import { returnMockData } from "../../helpers/mockData";
 function MockGameList(props) {
   const mockdata = returnMockData();
   const { addToBetSlipArray } = props;
-  console.log(mockdata[0]);
 
   return (
     <>

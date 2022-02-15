@@ -14,9 +14,9 @@ function App() {
     // if the user is authenticated
     isAuthenticated &&
       axios
-        .post("http://localhost:3016/users", user) // changed to my backend port
+        .post("http://localhost:3019/users", user) // changed to my backend port
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (err) {
           console.error(err);
@@ -29,6 +29,7 @@ function App() {
       {isLoading ? 
         <div>Loading</div>
         : isAuthenticated ? <Home /> : <Login />}
+
     </div>
   );
 }

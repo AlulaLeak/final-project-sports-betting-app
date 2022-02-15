@@ -24,50 +24,62 @@ function Selectable(props) {
     awayTeam,
     addToBetSlipArray,
     betSlipArray,
+    gameId,
   } = props;
 
   const awayMl = {
     odds: awayMoneylineOdds,
-    team: awayTeam,
+    betOn: "AWAY",
     teamsPlaying: teamsPlaying,
     typeOfBet: "moneyline",
+    gameId: gameId,
   };
   const homeMl = {
     odds: homeMoneylineOdds,
-    team: homeTeam,
+    betOn: "HOME",
     teamsPlaying: teamsPlaying,
     typeOfBet: "moneyline",
+    gameId: gameId,
   };
   const awaySp = {
     odds: awaySpreadOdds,
     spread: awaySpread,
-    team: awayTeam,
+    betOn: "AWAY",
     teamsPlaying: teamsPlaying,
     typeOfBet: "spread",
+    gameId: gameId,
   };
   const homeSp = {
     odds: homeSpreadOdds,
     spread: homeSpread,
-    team: homeTeam,
+    betOn: "HOME",
     teamsPlaying: teamsPlaying,
     typeOfBet: "spread",
+    gameId: gameId,
   };
   const totalOver = {
     odds: overOdds,
+    betOn: "OVER",
     total: pointsForTotalOdds,
     teamsPlaying: teamsPlaying,
     typeOfBet: "total",
+    gameId: gameId,
   };
   const totalUnder = {
     odds: underOdds,
     total: pointsForTotalOdds,
+    betOn: "UNDER",
     teamsPlaying: teamsPlaying,
     typeOfBet: "total",
+    gameId: gameId,
   };
 
   function confirmBet(betToAdd) {
+    betSlipArray.map((bet) => {
+      bet.gameId === betToAdd.gameId && console.log("game already exists!"); // need to replace console log with error message
+    });
+
     addToBetSlipArray(betToAdd);
-    console.log(betSlipArray);
   }
   return (
     <div className="fixture-card">

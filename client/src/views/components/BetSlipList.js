@@ -4,23 +4,40 @@ import BetSlipSummary from "./BetSlipSummary";
 import "../../styles/BetSlipItem.css";
 
 function BetSlipList(props) {
-  const { cancelFromBetSlipArray, betSlipArray } = props;
-  console.log(betSlipArray);
+  const {
+    cancelFromBetSlipArray,
+    betSlipArray,
+    getPotentialPayout,
+    setAmountWagered,
+    placeBet,
+  } = props;
 
   return (
     <>
       {!betSlipArray[0] && (
-        <div className="betslip-item-box-center">
-          0 items in BetSlip
-        </div>
+        <>
+          <div>Single Bet</div>
+          <div className="betslip-item-box-center">0 items in BetSlip</div>
+        </>
       )}
+      {betSlipArray[0] &&
+        betSlipArray.map((bet, idx) => {
+          return (
+            <BetSlipItem
+              key={idx}
+              cancelFromBetSlipArray={cancelFromBetSlipArray}
+              bet={bet}
+            />
+          );
+        })}
       {betSlipArray[0] && (
-        <BetSlipItem
-          cancelFromBetSlipArray={cancelFromBetSlipArray}
+        <BetSlipSummary
+          getPotentialPayout={getPotentialPayout}
+          setAmountWagered={setAmountWagered}
           betSlipArray={betSlipArray}
+          placeBet={placeBet}
         />
       )}
-      {betSlipArray[0] && <BetSlipSummary />}
     </>
   );
 }

@@ -10,7 +10,8 @@ import { usePageMode } from "../../helpers/usePageMode";
 import { useBetSlip } from "../../helpers/useBetSlip";
 import "./Home.css";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
+import OnGoingBetList from "../components/OnGoingBetList";
 
 function Home() {
   const {
@@ -18,6 +19,10 @@ function Home() {
     cancelFromBetSlipArray,
     betSlipArray,
     showBetSlipList,
+    getPotentialPayout,
+    setAmountWagered,
+    placeBet,
+    getOnGoingBets,
   } = useBetSlip([]);
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
@@ -28,22 +33,28 @@ function Home() {
       <Navbar />
       <HomeGreeting />
       <BetSlipList
-        cancelFromBetSlip={cancelFromBetSlipArray}
+        cancelFromBetSlipArray={cancelFromBetSlipArray}
         betSlipArray={betSlipArray}
         addToBetSlipArray={addToBetSlipArray}
         showBetSlipList={showBetSlipList}
+        getPotentialPayout={getPotentialPayout}
+        setAmountWagered={setAmountWagered}
+        placeBet={placeBet}
       />
       <ViewSelector
         setLeagueName={setLeagueName}
         transitionPage={transitionPage}
       />
-      {pageMode === "PROFILE" && <div>hi</div>}
+      {pageMode === "PROFILE" && (
+        <OnGoingBetList getOnGoingBets={getOnGoingBets} />
+      )}
       {pageMode === "GAMES" && (
         <>
           <LeagueSelector setLeagueName={setLeagueName} />
           <GameList
             leagueName={leagueName}
             addToBetSlipArray={addToBetSlipArray}
+            betSlipArray={betSlipArray}
           />
           {/* <MockGameList addToBetSlipArray={addToBetSlipArray} /> */}
         </>
