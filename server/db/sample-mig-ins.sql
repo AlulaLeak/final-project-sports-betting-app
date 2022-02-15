@@ -22,6 +22,7 @@ CREATE TABLE users (
 
 CREATE TABLE games (
   id int PRIMARY KEY
+  teams_playing VARCHAR(200)
 );
 
 INSERT INTO games (id)
@@ -147,3 +148,23 @@ WHERE
     NOT EXISTS (
         SELECT id FROM games WHERE id = $1
     );
+
+-- SELECT * & id.games
+-- FROM single_bet
+-- WHERE
+
+-- Joins and presents users on-going bet slips w/ sigle bets
+
+`SELECT
+   *,
+   games.teams_playing,
+   bet_slip.amount_wagered,
+FROM
+   single_bet
+INNER JOIN
+   games ON games.id = game_id
+INNER JOIN
+   bet_slip ON bet_slip.id = bet_slip_id
+WHERE (bet_slip_id = $1 AND win IS NULL) `
+
+-- `SELECT *, games.teams_playing, bet_slip.amount_wagered FROM single_bet JOIN games ON games.id = game_id JOIN bet_slip ON bet_slip.id = bet_slip_id WHERE bet_slip_id = $1 AND win IS NULL`;

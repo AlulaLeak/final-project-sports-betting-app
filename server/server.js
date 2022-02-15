@@ -69,8 +69,9 @@ app.post("/placebet", (req, res) => {
         db.query(selectQueryString, selectValues).then((res) => {
           if (!res.rows[0]) {
             // Insert game into db (IF NOT ALREADY)
-            const insValues = [bet.gameId];
-            const insQueryString = "INSERT INTO games(id) VALUES ($1);";
+            const insValues = [bet.gameId, bet.teamsPlaying];
+            const insQueryString =
+              "INSERT INTO games(id, teams_playing) VALUES ($1, $2);";
             db.query(insQueryString, insValues).then((res) => {
               // Insert single-bet into betslip
               if (bet.betOn === "HOME") {
@@ -263,25 +264,42 @@ app.post("/seebets", (req, res) => {
   const getOnGoingBetSlipValue = [userId];
   const getOnGoingBetSlipQuery = `SELECT id FROM bet_slip WHERE user_id = $1 AND win IS NULL`; // I want all bet slips from user
   let betSlipArray = [];
-  db.query(getOnGoingBetSlipQuery, getOnGoingBetSlipValue).then((response) => {
-    const betSlipArrayOfIds = response.rows;
-    betSlipArrayOfIds.map((betSlip) => {
-      const getOnGoingSingleBetsPerBetSlipValue = [betSlip.id];
-      const getOnGoingSingleBetsPerBetSlipQuery = `SELECT * FROM single_bet WHERE bet_slip_id = $1 AND win IS NULL`; // I want all bet slips from user
-      db.query(
-        getOnGoingSingleBetsPerBetSlipQuery,
-        getOnGoingSingleBetsPerBetSlipValue
-      ).then((response) => {
-        let bet = response.rows;
-        betSlipArray = [...betSlipArray, bet];
-        betSlipArrayOfIds.length === betSlipArray.length &&
-          res.send(betSlipArray);
-        console.log("This should be a full bet slip array:", betSlipArray);
+  db.query(getOnGoingBetSlipQuery, getOnGoingBetSlipValue)
+    .then((response) => {
+      const betSlipArrayOfIds = response.rows;
+      betSlipArrayOfIds.map((betSlip) => {
+        const getOnGoingSingleBetsPerBetSlipValue = [betSlip.id];
+        const getOnGoingSingleBetsPerBetSlipQuery = `
+                                                  SELECT
+                                                     *,
+                                                     games.teams_playing,
+                                                     bet_slip.amount_wagered
+                                                  FROM
+                                                     single_bet
+                                                  INNER JOIN
+                                                     games ON games.id = game_id
+                                                  INNER JOIN
+                                                     bet_slip ON bet_slip.id = bet_slip_id
+                                                  WHERE (bet_slip_id = $1 AND bet_slip.win IS NULL);
+                                                  `;
+        db.query(
+          getOnGoingSingleBetsPerBetSlipQuery,
+          getOnGoingSingleBetsPerBetSlipValue
+        ).then((response) => {
+          let bet = response.rows;
+          betSlipArray.push(bet);
+          betSlipArrayOfIds.length === betSlipArray.length &&
+            console.log("This is the bet-slip array:", betSlipArray);
+        });
       });
+    })
+    .then((aresponse) => {
+      res.send(betSlipArray);
     });
-  });
 });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+// `SELECT *, games.teams_playing, bet_slip.amount_wagered FROM single_bet JOIN games ON games.id = game_id JOIN bet_slip ON bet_slip.id = bet_slip_id WHERE bet_slip_id = $1 AND win IS NULL`;
