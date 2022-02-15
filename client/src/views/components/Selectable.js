@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorModal from "./ErrorModal";
+import ModalMessage from "./ModalMessage";
 import { useState } from "react";
 
 function Selectable(props) {
@@ -249,9 +249,13 @@ function Selectable(props) {
           </button>
         </div>
       </div>
-      <ErrorModal
+      <ModalMessage
         show={modalShow}
         onHide={() => setModalShow(false)}
+        type="error"
+        header="Error message"
+        message1="You cannot place bets on the same team, in a single parlay."
+        message2="Finish placing your bet above or add bets from other games before adding another to your bet slip."
       />
     </div>
   );

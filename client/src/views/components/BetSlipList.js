@@ -10,6 +10,7 @@ function BetSlipList(props) {
     getPotentialPayout,
     setAmountWagered,
     placeBet,
+    cancelAllFromBetSlipArray
   } = props;
 
   return (
@@ -36,6 +37,7 @@ function BetSlipList(props) {
           setAmountWagered={setAmountWagered}
           betSlipArray={betSlipArray}
           placeBet={placeBet}
+          cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
         />
       )}
     </>

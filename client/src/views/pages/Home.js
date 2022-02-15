@@ -12,6 +12,7 @@ import "./Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import OnGoingBetList from "../components/OnGoingBetList";
+import ModalMessage from "../components/ModalMessage"
 
 function Home() {
   const {
@@ -23,7 +24,10 @@ function Home() {
     setAmountWagered,
     placeBet,
     getOnGoingBets,
+    cancelAllFromBetSlipArray,
   } = useBetSlip([]);
+
+  // const [modalShow, setModalShow] = useState(false);
 
   const { pageMode, transitionPage } = usePageMode("GAMES");
   const [leagueName, setLeagueName] = useState("");
@@ -33,6 +37,7 @@ function Home() {
       <Navbar />
       <HomeGreeting />
       <BetSlipList
+        cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
         cancelFromBetSlipArray={cancelFromBetSlipArray}
         betSlipArray={betSlipArray}
         addToBetSlipArray={addToBetSlipArray}
@@ -60,6 +65,7 @@ function Home() {
         </>
       )}
       <Footer />
+      
     </div>
   );
 }

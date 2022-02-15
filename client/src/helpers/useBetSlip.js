@@ -13,6 +13,8 @@ export function useBetSlip(initial) {
   const { transition } = useVisualMode(SELECTABLE);
   const { user } = useAuth0();
 
+  const [modalShow, setModalShow] = useState(false);
+
   const addToBetSlipArray = (betToAdd) => {
     let oldBets = betSlipArray;
     transition(BET_PLACED); // not working no matter where I put it
@@ -30,6 +32,12 @@ export function useBetSlip(initial) {
   }
   function showBetSlipList() {
     return betSlipArray.length > 0 ? true : false;
+  }
+
+  function cancelAllFromBetSlipArray() {
+    placeBet();  
+    setBetSlipArray([]); 
+    setModalShow(true)   
   }
 
   // Seeing potential payout of betSlipArray
@@ -132,5 +140,6 @@ export function useBetSlip(initial) {
     setAmountWagered,
     placeBet,
     getOnGoingBets,
+    cancelAllFromBetSlipArray    
   };
 }

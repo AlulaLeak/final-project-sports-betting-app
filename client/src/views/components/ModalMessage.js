@@ -1,8 +1,9 @@
 import Modal from 'react-bootstrap/Modal';
 import { Button } from '@material-ui/core';
-import '../../styles/ErrorModal.css';
+import '../../styles/ModalMessage.css';
 
-function ErrorModal(props) {
+function ModalMessage(props) {
+  const { type, header, message1, message2, } = props;
   return (
     <Modal
       {...props}
@@ -12,12 +13,12 @@ function ErrorModal(props) {
     >
       <Modal.Header closeButton className="error-header">
         <Modal.Title id="contained-modal-title-vcenter" className="error-header">
-          Error message
+          {header}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className='error-message'>You cannot place bets on the same team, in a single parlay.</p>
-        <p className='error-message'>Finish placing your bet above or add bets from other games before adding another to your bet slip.</p>
+        <p className={`${type}-message`}>{message1}</p>
+        <p className={`${type}-message`}>{message2}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button className="error-header" onClick={props.onHide}>Close</Button>
@@ -26,4 +27,4 @@ function ErrorModal(props) {
   );
 }
 
-export default ErrorModal;
+export default ModalMessage;
