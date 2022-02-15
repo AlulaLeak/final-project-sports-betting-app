@@ -1,5 +1,5 @@
 .topbox {
-  background-color: #bac1c9;
+  background-color: #0000;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -14,6 +14,8 @@
 .hello {
   font-weight: bold;
   font-size: 28px;
+  color: red;
+  font-family: 'Bebas Neue', cursive;
 }
 .avatar {
   border-radius: 10%;

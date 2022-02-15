@@ -14,7 +14,6 @@ function BetSlipList(props) {
 
   return (
     <>
-      <div className="bet-slip-title">Bet Slip</div>
       {!betSlipArray[0] && (
         <>
           <div>Single Bet</div>
