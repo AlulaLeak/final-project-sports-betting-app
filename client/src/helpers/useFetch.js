@@ -12,8 +12,8 @@ export function useFetch(league) {
         leagueName ? leagueName : "?league=NBA"
       }`,
       headers: {
-        "x-rapidapi-host": "sportspage-feeds.p.rapidapi.com",
-        "x-rapidapi-key": "a4bfa14385msh95345752cc73d7fp1359f2jsn167a97dbba62",
+        "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
+        "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY
       },
     };
     return axios
