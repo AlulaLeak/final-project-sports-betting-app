@@ -1,0 +1,9 @@
+.ongoing-bet-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.potential-payout-ongoing {
+  display: flex;
+  flex-direction: row;
+}
