@@ -1,11 +1,12 @@
 .topbox {
   background-color: #0000;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   align-items: center;
   margin: 100px 0px 10px 0px;
   padding: 5px 40px 5px 40px;  
+  
 }
 .words {
   display: flex;
@@ -13,10 +14,31 @@
 }
 .hello {
   font-weight: bold;
-  font-size: 28px;
-  color: red;
+  font-size: 25px;
+  color: #00AFF0;
   font-family: 'Bebas Neue', cursive;
+  padding-right: 175px;
 }
 .avatar {
   border-radius: 10%;
 }
+
+.greeting{
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (max-width: 720px) {
+
+}
+
+@media all and (max-width: 400px) {
+  .hello {
+    font-size: 25px;
+    color: #00AFF0;
+    font-family: 'Bebas Neue', cursive;
+    padding-right: 10px;
+  }
+
+  
+} 

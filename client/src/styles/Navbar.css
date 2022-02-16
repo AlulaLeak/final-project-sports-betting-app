@@ -1,10 +1,10 @@
-/* .navbarWrapper {
+.navbarWrapper {
   display: flex;
   flex-direction: column;
   align-content: center;
-} */
+}
 .Navbar {
-  background-color: #1b1b1c;
+  background-color: #ffffff;
   color: #843c34;  
   height: 80px;
   font-weight: 500;
@@ -27,6 +27,7 @@
   justify-content: left;
   border-radius: 8px;
   margin-left: 33px;
+  margin-top: -5px;
 }
 
 .rightSide {
@@ -39,7 +40,7 @@
 .links a {
   max-height: 80px;
   text-decoration: none;
-  color: #e73725;
+  color: #00AFF0;
   font-size: 20px;
   margin-right: 50px;
 }

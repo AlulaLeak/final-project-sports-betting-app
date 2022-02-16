@@ -6,10 +6,14 @@ function HomeGreeting() {
     const { user } = useAuth0();
     return (
         <div className="topbox">
-            <div className="words">
-                <h1 className="hello">Hello, {user.name}</h1>
+            <div className="greeting">
+                <h1 className="hello">Hello,</h1>
+                <h1 className="hello">{user.name}</h1>
             </div>
-            <img className="avatar" src={user.picture} alt={("picture of: ", user.name)} />
+            <div className="words">
+                <img className="avatar" src={user.picture} alt={("picture of: ", user.name)} />
+            </div>
+            
         </div>
     )
 }
