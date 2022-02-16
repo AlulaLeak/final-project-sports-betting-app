@@ -1,5 +1,5 @@
 .betslip-item-box-space-between {
-  border: 1px solid red;
+  border: 1px solid #00AFF0;
   width: auto;
   display: flex;
   border-radius: 5px;
@@ -17,7 +17,7 @@
   padding: 10px;
   font-size: 25px;
   font-weight: 500;
-  background-color: #a0a4ab;
+  background-color: #ffffff;
   font-family: 'Bebas Neue', cursive;
 }
 
@@ -46,7 +46,7 @@
     border-radius: 12px;
     font-size: 15px;
     font-weight: bold;
-    background: red;
+    background: #00AFF0;
     color: white;
     font-family: 'Bebas Neue', cursive;
 }
@@ -60,6 +60,14 @@
   /* border-bottom: solid 1px  #ec121f;
   border-top: solid 1px #ec121f; */
   /* background-color: #0a040c; */
-  color: #ec121f;
+  color: #00AFF0;
   
+}
+
+.balance {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  font-size: 15px;
+  padding-top: 10px;
+  margin-left: 10px;
 }

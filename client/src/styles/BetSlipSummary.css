@@ -1,5 +1,5 @@
 .main-betslip-summary-box {
-  border: 1px solid red;
+  border: 1px solid #00AFF0;
   width: auto;
   display: flex;
   border-radius: 5px;
@@ -59,6 +59,6 @@
   width: 50%;
   left: 25%;
   position: relative;
-  background-color: red;
+  background-color: #50C878;
   color: white;
 }

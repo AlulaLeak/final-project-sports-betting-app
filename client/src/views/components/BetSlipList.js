@@ -16,7 +16,7 @@ function BetSlipList(props) {
     <>
       {!betSlipArray[0] && (
         <>
-          <div>Single Bet</div>
+        <div class="balance">Balance: $100.00</div>
           <div className="betslip-item-box-center">0 items in BetSlip</div>
         </>
       )}

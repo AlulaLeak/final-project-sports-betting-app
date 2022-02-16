@@ -2,7 +2,7 @@
     width: auto;
     display:flex;
     flex-direction: column;
-    background-color: #a0a4ab;
+    background-color: #ffffff;
     padding: 15px;
     font-family: 'Bebas Neue', cursive;
 }
@@ -26,6 +26,6 @@
     border-radius: 12px;
     font-size: 20px;
     font-weight: bold;
-    background: red;
+    background: #00AFF0;
     color: white;    
 }
