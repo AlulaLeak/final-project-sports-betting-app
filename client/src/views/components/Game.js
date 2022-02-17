@@ -53,28 +53,29 @@ function Game(props) {
 
   return (
     <>
-      {/* {viewMode === SELECTABLE && ( */}
-      <Selectable
-        awayScore={awayScore}
-        homeScore={homeScore}
-        teamsPlaying={teamsPlaying}
-        currentPeriods={currentPeriods}
-        periodTimeRemaining={periodTimeRemaining}
-        awayMoneylineOdds={awayMoneylineOdds}
-        homeMoneylineOdds={homeMoneylineOdds}
-        awaySpread={awaySpread}
-        homeSpread={homeSpread}
-        awaySpreadOdds={awaySpreadOdds}
-        homeSpreadOdds={homeSpreadOdds}
-        overOdds={overOdds}
-        underOdds={underOdds}
-        pointsForTotalOdds={pointsForTotalOdds}
-        league={league}
-        transition={transition}
-        addToBetSlipArray={addToBetSlipArray}
-        betSlipArray={betSlipArray}
-        gameId={gameId}
-      />
+      {viewMode === SELECTABLE && (
+        <Selectable
+          awayScore={awayScore}
+          homeScore={homeScore}
+          teamsPlaying={teamsPlaying}
+          currentPeriods={currentPeriods}
+          periodTimeRemaining={periodTimeRemaining}
+          awayMoneylineOdds={awayMoneylineOdds}
+          homeMoneylineOdds={homeMoneylineOdds}
+          awaySpread={awaySpread}
+          homeSpread={homeSpread}
+          awaySpreadOdds={awaySpreadOdds}
+          homeSpreadOdds={homeSpreadOdds}
+          overOdds={overOdds}
+          underOdds={underOdds}
+          pointsForTotalOdds={pointsForTotalOdds}
+          league={league}
+          transition={transition}
+          addToBetSlipArray={addToBetSlipArray}
+          betSlipArray={betSlipArray}
+          gameId={gameId}
+        />
+      )}
       {viewMode === CONFIRM && (
         <Confirm
           awayScore={awayScore}
