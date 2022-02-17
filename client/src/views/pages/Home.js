@@ -3,6 +3,7 @@ import HomeGreeting from "../components/HomeGreeting";
 import LeagueSelector from "../components/LeagueSelector";
 import GameList from "../components/GameList";
 // import MockGameList from "../components/MockGameList";
+import ViewSelector from "../components/ViewSelector";
 import BetSlipList from "../components/BetSlipList";
 import { useState } from "react";
 import { usePageMode } from "../../helpers/usePageMode";
@@ -35,9 +36,9 @@ function Home() {
   return (
     <div className="home-greeting-event-separator">
       <Navbar
-        setLeagueName={setLeagueName}
-        transitionPage={transitionPage}
-      />
+      setLeagueName={setLeagueName}
+      transitionPage={transitionPage}
+       />
       <HomeGreeting />
       <BetSlipList
         cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
@@ -49,6 +50,7 @@ function Home() {
         setAmountWagered={setAmountWagered}
         placeBet={placeBet}
       />
+
       {pageMode === "PROFILE" && (
         <OnGoingBetList getOnGoingBets={getOnGoingBets} />
       )}

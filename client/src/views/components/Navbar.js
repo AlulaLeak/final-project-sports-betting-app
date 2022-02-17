@@ -383,13 +383,11 @@ function Navbar({ setLeagueName, transitionPage }) {
               </g>
             </svg>
           </div>
-
            
             <ViewSelector
               setLeagueName={setLeagueName}
               transitionPage={transitionPage}
-            />
-           
+            />           
 
           <div className='rightSide'>
             <LogoutButton />
