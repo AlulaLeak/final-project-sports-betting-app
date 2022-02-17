@@ -10,7 +10,7 @@
   /* display: block; */
   margin: 0 40px;
   /* width: 30px; */
-  padding: 10px 30px;
+  padding: 8px 30px;
   border-radius: 12px;
   font-size: 22px;
   font-weight: 550;
@@ -18,3 +18,17 @@
   font-family: "Bebas Neue", cursive;
   color: #00aff0;
 }
+
+@media all and (max-width: 1100px) {
+  .selector-card {
+    height: 25px;
+    width: 80px;
+    font-size: 12px;
+    padding: 5px;
+    margin: 2px 0 0 10px;
+  /* font-weight: 550; */
+
+  }
+}
+
+ 

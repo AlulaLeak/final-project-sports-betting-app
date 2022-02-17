@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   position:fixed;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   top: 0;
   width: 100%;
   padding-top: 10px;
@@ -32,6 +32,7 @@
   display: flex;
   justify-content: right;
   align-items: center;
+  text-decoration: none;
 }
 
 .links a {
@@ -52,7 +53,14 @@
 } */
 
 @media all and (max-width: 400px) {
+  .Navbar {
+    background-color: #ffffff;
+    height: 80px;
+    /* font-weight: 500; */
+    display: flex;
+    /* justify-content: space-between; */
 
+  }
 }
 
 
