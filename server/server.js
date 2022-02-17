@@ -478,3 +478,18 @@ app.post("/seebets", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+app.post("/balance", (req, res) => {
+  const { userId } = req.body;
+
+  const getUserBalanceValue = [userId];
+  const getUserBalanceQuery = `
+  SELECT balance
+  FROM users
+  WHERE id = $1;
+    `;
+  db.query(getUserBalanceQuery, getUserBalanceValue).then((response) => {
+    res.send(response.rows[0].balance.toString());
+    console.log("The user's balance is:", response.rows[0].balance);
+  });
+});

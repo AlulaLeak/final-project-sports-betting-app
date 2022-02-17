@@ -10,14 +10,17 @@ function BetSlipList(props) {
     getPotentialPayout,
     setAmountWagered,
     placeBet,
-    cancelAllFromBetSlipArray
+    cancelAllFromBetSlipArray,
+    balance,
   } = props;
+  console.log("This is the users balance:", balance);
 
   return (
     <>
+      <div class="balance">Balance: {balance && balance}</div>
+
       {!betSlipArray[0] && (
         <>
-        <div class="balance">Balance: $100.00</div>
           <div className="betslip-item-box-center">0 items in BetSlip</div>
         </>
       )}

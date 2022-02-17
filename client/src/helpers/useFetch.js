@@ -9,7 +9,7 @@ export function useFetch(league) {
     let options = {
       method: "GET",
       url: `https://sportspage-feeds.p.rapidapi.com/games${
-        leagueName ? leagueName : "?league=NBA"
+        leagueName ? leagueName : "?league=NHL"
       }`,
       headers: {
         "x-rapidapi-host": "sportspage-feeds.p.rapidapi.com",
