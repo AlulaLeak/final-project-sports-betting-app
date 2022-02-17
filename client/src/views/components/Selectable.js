@@ -1,6 +1,7 @@
 import React from "react";
 import ModalMessage from "./ModalMessage";
 import { useState } from "react";
+import "../../styles/game.css"
 
 function Selectable(props) {
   const BET_PLACED = "BET_PLACED";
@@ -382,11 +383,11 @@ function Selectable(props) {
       )}
       <div>{league}</div>
       <div className="teams-and-scores">
-        <div>{awayScore}</div>
+        <div className="live-score">{awayScore}</div>
         <br />
-        <div>{teamsPlaying}</div>
+        <div classname="mobile-teams-playing">{teamsPlaying}</div>
         <br />
-        <div>{homeScore}</div>
+        <div className="live-score">{homeScore}</div>
       </div>
       <div>period: {currentPeriods}</div>
       <div>time remaining: {periodTimeRemaining}</div>
@@ -441,7 +442,7 @@ function Selectable(props) {
             <div>O</div>
             <div>{overOdds}</div>
           </button>
-          <div className="total-and-spread-points">
+          <div className="total-points-bet">
             total {pointsForTotalOdds} points
           </div>
           <button

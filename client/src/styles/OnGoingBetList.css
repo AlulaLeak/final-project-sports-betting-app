@@ -7,3 +7,17 @@
   display: flex;
   flex-direction: row;
 }
+
+.on-going-bets-card {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #00AFF0;
+  margin: 10px;
+  padding: 10px;
+  min-height: 150px;
+  color: white;
+}
+

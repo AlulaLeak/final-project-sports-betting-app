@@ -1,3 +1,8 @@
+@font-face {
+  font-family: stamped;
+  src: url(fonts/higher-jump.regular.ttf);
+}
+
 .topbox {
   background-color: #0000;
   display: flex;
@@ -14,7 +19,7 @@
 }
 .hello {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 30px;
   color: #00AFF0;
   font-family: 'Bebas Neue', cursive;
   padding-right: 175px;
@@ -34,9 +39,9 @@
 
 @media all and (max-width: 400px) {
   .hello {
-    font-size: 25px;
+    font-size: 15px;
     color: #00AFF0;
-    font-family: 'Bebas Neue', cursive;
+    font-family: stamped;
     padding-right: 10px;
   }
 

@@ -14,11 +14,11 @@ function BetPlaced(props) {
       <div>ADDED TO BET SLIP</div>
       <div>{league}</div>
       <div className="teams-and-scores">
-        <div>{awayScore}</div>
+        <div className="live-score">{awayScore}</div>
         <br />
         <div>{teamsPlaying}</div>
         <br />
-        <div>{homeScore}</div>
+        <div className="live-score">{homeScore}</div>
       </div>
       <div>period: {currentPeriods}</div>
       <div>time remaining: {periodTimeRemaining}</div>

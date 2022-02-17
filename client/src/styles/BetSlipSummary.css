@@ -62,4 +62,5 @@
   position: relative;
   background-color: #50C878;
   color: white;
+  z-index: 0;
 }
