@@ -54,7 +54,7 @@ export function useBetSlip(initial) {
       } else {
         odds = 100 / Math.abs(singleBet.odds) + 1;
       }
-      let singPotPayout = parseFloat((odds * amountWagered).toFixed(2)) * 0.95;
+      let singPotPayout = (parseFloat(odds * amountWagered) * 0.95).toFixed(2);
       if (singPotPayout) {
         setPotentialPayout(singPotPayout);
         return singPotPayout;
@@ -77,7 +77,7 @@ export function useBetSlip(initial) {
       allOdds.map((eachnewOdd) => {
         currentOdd = currentOdd * eachnewOdd;
       });
-      let potPayout = parseFloat((currentOdd * amountWagered).toFixed(2)) * 0.9;
+      let potPayout = (parseFloat(currentOdd * amountWagered) * 0.9).toFixed(2);
       if (!potPayout) {
         setPotentialPayout(0);
         return 0;
@@ -124,9 +124,8 @@ export function useBetSlip(initial) {
     getPotentialPayout,
     setAmountWagered,
     placeBet,
-    getOnGoingBets,
     cancelAllFromBetSlipArray,
     setModalShow,
-    modalShow
+    modalShow,
   };
 }
