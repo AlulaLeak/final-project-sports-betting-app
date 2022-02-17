@@ -35,7 +35,9 @@ function Home() {
 
   return (
     <div className="home-greeting-event-separator">
-      <Navbar />
+      <Navbar
+      setLeagueName={setLeagueName}
+      transitionPage={transitionPage} />
       <HomeGreeting />
       <BetSlipList
         cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
@@ -48,10 +50,7 @@ function Home() {
         placeBet={placeBet}
         balance={balance}
       />
-      <ViewSelector
-        setLeagueName={setLeagueName}
-        transitionPage={transitionPage}
-      />
+    
       {pageMode === "PROFILE" && (
         <OnGoingBetList getOnGoingBets={getOnGoingBets} />
       )}
