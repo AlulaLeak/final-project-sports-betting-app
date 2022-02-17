@@ -9,7 +9,7 @@ export function useBetSlip(initial) {
   const [betSlipArray, setBetSlipArray] = useState(initial);
   const [amountWagered, setAmountWagered] = useState(0);
   const [singleBet, setSingleBet] = useState({});
-  const [potentialPayout, setPotentialPayout] = useState();
+  const [potentialPayout, setPotentialPayout] = useState(0);
   const { transition } = useVisualMode(SELECTABLE);
   const { user } = useAuth0();
 
@@ -34,8 +34,8 @@ export function useBetSlip(initial) {
   }
 
   function cancelAllFromBetSlipArray() {
-    placeBet();
     setBetSlipArray([]);
+    placeBet();
     setModalShow(true);
   }
 
@@ -46,6 +46,10 @@ export function useBetSlip(initial) {
     let allOddsAmerican = [];
     let allOdds = [];
     let currentOdd = 1;
+
+    if (!betSlipArray[0]) {
+      setPotentialPayout(0);
+    }
 
     if (betSlipArray.length === 1) {
       setSingleBet(betSlipArray[0]);
@@ -127,5 +131,6 @@ export function useBetSlip(initial) {
     cancelAllFromBetSlipArray,
     setModalShow,
     modalShow,
+    amountWagered,
   };
 }

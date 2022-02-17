@@ -11,15 +11,31 @@ export function useUserInfo() {
       userId: user.sub,
     };
     return axios
-      .post("http://localhost:3019/balance", options) // changed to my backend port
+      .post("http://localhost:3019/balance", options)
       .then(function (response) {
-        console.log("user balance passed from the server:", response.data);
         setBalance(response.data);
       })
       .catch(function (err) {
         console.error(err);
       });
-  }, []);
+  }, [balance]);
 
-  return { balance };
+  function setNewBalanceAfterCheckout(amountWagered) {
+    const options = {
+      amountWagered,
+      userId: user.sub,
+    };
+
+    return axios
+      .post("http://localhost:3019/balance/after-checkout", options)
+      .then(function (response) {
+        const NewBalanceAfterCheckout = parseInt(response.data);
+        setBalance(NewBalanceAfterCheckout);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  }
+
+  return { balance, setNewBalanceAfterCheckout };
 }
