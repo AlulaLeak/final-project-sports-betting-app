@@ -19,7 +19,7 @@ function BetSlipSummary(props) {
           <div>Total Wager</div>
           <div className="dollar-sign-input">
             <p>$</p>
-            <input onChange={(e) => setAmountWagered(e.target.value)} />
+            <input onChange={(e) => setAmountWagered(e.target.value)} /> 
           </div>
         </div>
         <div className="cashout-title">CASH OUT</div>
