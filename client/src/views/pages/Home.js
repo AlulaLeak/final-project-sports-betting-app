@@ -29,8 +29,9 @@ function Home() {
     cancelAllFromBetSlipArray,
     modalShow,
     setModalShow,
+    amountWagered,
   } = useBetSlip([]);
-  const { balance } = useUserInfo();
+  const { balance, setNewBalanceAfterCheckout } = useUserInfo();
   const { pageMode, transitionPage } = usePageMode("GAMES");
   const [leagueName, setLeagueName] = useState("");
 
@@ -55,6 +56,8 @@ function Home() {
         setAmountWagered={setAmountWagered}
         placeBet={placeBet}
         balance={balance}
+        amountWagered={amountWagered}
+        setNewBalanceAfterCheckout={setNewBalanceAfterCheckout}
       />
     
       {pageMode === "PROFILE" && (

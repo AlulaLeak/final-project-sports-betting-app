@@ -15,11 +15,16 @@ export function useBetSlip(initial) {
 
   const [modalShow, setModalShow] = useState(false);
 
+ 
   function getPotentialPayout() {
     let odds = 0;
     let allOddsAmerican = [];
     let allOdds = [];
     let currentOdd = 1;
+
+    if (!betSlipArray[0]) {
+      setPotentialPayout(0);
+    }
 
     if (betSlipArray.length === 1) {
       setSingleBet(betSlipArray[0]);
@@ -129,5 +134,6 @@ export function useBetSlip(initial) {
     cancelAllFromBetSlipArray,
     setModalShow,
     modalShow,
+    amountWagered,
   };
 }

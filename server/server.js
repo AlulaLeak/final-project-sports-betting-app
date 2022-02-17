@@ -475,10 +475,6 @@ app.post("/seebets", (req, res) => {
     .then((aresponse) => {});
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
-
 app.post("/balance", (req, res) => {
   const { userId } = req.body;
 
@@ -490,6 +486,29 @@ app.post("/balance", (req, res) => {
     `;
   db.query(getUserBalanceQuery, getUserBalanceValue).then((response) => {
     res.send(response.rows[0].balance.toString());
-    console.log("The user's balance is:", response.rows[0].balance);
+    // console.log("The user's balance is:", response.rows[0].balance);
   });
+});
+
+app.post("/balance/after-checkout", (req, res) => {
+  const { amountWagered, userId } = req.body;
+  console.log("This is the amount wagered: ", amountWagered);
+
+  const balanceDifferenceValue = [amountWagered, userId];
+  const setBalanceDifferenceQuery = `
+  UPDATE users
+  SET balance = balance - $1
+  WHERE id = $2
+  RETURNING *;
+  `;
+  db.query(setBalanceDifferenceQuery, balanceDifferenceValue).then(
+    (response) => {
+      console.log("This is the user's balance: ", response.rows[0].balance);
+      res.send(response.rows[0].balance.toString());
+    }
+  );
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
