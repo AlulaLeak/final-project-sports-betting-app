@@ -3,21 +3,9 @@ import '../../styles/Navbar.css'
 import ReorderIcon from '@material-ui/icons/Reorder';
 import LogoutButton from '../components/auth buttons/LogoutButton';
 import logo from '../../styles/logoImg/logo.png';
-
-import { usePageMode } from '../../helpers/usePageMode';
 import ViewSelector from './ViewSelector';
 
-
-
-function Navbar({setLeagueName, transitionPage}) {
-
-
-
-  const [showLinks, setShowLinks] = useState(false)
-
-  // const { pageMode, transitionPage } = usePageMode("GAMES");
-  // const [leagueName, setLeagueName] = useState("");
-  
+function Navbar({ setLeagueName, transitionPage }) {
 
   // function openMobileMenuToggle() {
   //   setShowLinks(!showLinks)
@@ -27,7 +15,6 @@ function Navbar({setLeagueName, transitionPage}) {
       <div className="navbarWrapper">
         <div className='Navbar'>
           <div className="logoImg">
-
             <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="body_1" width="73" height="70">
 
               <g transform="matrix(1.0735295 0 0 1.0769231 0 0)">
@@ -401,28 +388,15 @@ function Navbar({setLeagueName, transitionPage}) {
             <ViewSelector
               setLeagueName={setLeagueName}
               transitionPage={transitionPage}
-            />            
-            
+            />
           </div>
 
           <div className='rightSide'>
-            {/* <div className='links' id={showLinks ? 'hidden' : ''}> */}
-
-            {/* <img alt='' /> */}
-
             <LogoutButton />
-
-            {/* </div> */}
-
-            {/* <button onClick={openMobileMenuToggle}>
-              <ReorderIcon />
-            </button> */}
-
           </div>
         </div>
       </div>
     </div>
-
   )
 }
 

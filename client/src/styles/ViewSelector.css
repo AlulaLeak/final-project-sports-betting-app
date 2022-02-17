@@ -1,19 +1,20 @@
-/* .view-select-wrapper {
+.view-select-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   background-color: white;
-  
+  margin-bottom: 12px;
 }
 
 .selector-card {
-  display: block;
-    padding: 10px 30px;
-    border-radius: 12px;
-  width: 50%;
-  font-size: 30px;
+  /* display: block; */
+  margin: 0 40px;
+  /* width: 30px; */
+  padding: 10px 30px;
+  border-radius: 12px;
+  font-size: 22px;
   font-weight: 550;
   background-color: #1c1c1c;
-  font-family: 'Bebas Neue', cursive;
-  color: #00AFF0;
-} */
+  font-family: "Bebas Neue", cursive;
+  color: #00aff0;
+}
