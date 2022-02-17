@@ -12,7 +12,8 @@ import "./Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import OnGoingBetList from "../components/OnGoingBetList";
-import ModalMessage from "../components/ModalMessage"
+import ModalMessage from "../components/ModalMessage";
+import { useUserInfo } from "../../helpers/useUserInfo";
 
 function Home() {
   const {
@@ -26,10 +27,9 @@ function Home() {
     getOnGoingBets,
     cancelAllFromBetSlipArray,
     modalShow,
-    setModalShow
-
+    setModalShow,
   } = useBetSlip([]);
-
+  const { balance } = useUserInfo();
   const { pageMode, transitionPage } = usePageMode("GAMES");
   const [leagueName, setLeagueName] = useState("");
 
@@ -46,6 +46,7 @@ function Home() {
         getPotentialPayout={getPotentialPayout}
         setAmountWagered={setAmountWagered}
         placeBet={placeBet}
+        balance={balance}
       />
       <ViewSelector
         setLeagueName={setLeagueName}
