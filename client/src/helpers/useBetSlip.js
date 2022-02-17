@@ -15,32 +15,7 @@ export function useBetSlip(initial) {
 
   const [modalShow, setModalShow] = useState(false);
 
-  const addToBetSlipArray = (betToAdd) => {
-    let oldBets = betSlipArray;
-    transition(BET_PLACED); // not working no matter where I put it
-    setBetSlipArray([betToAdd, ...oldBets]);
-  };
-  function cancelFromBetSlipArray(betToCancel) {
-    let newBetSlipArray = [];
-    newBetSlipArray = betSlipArray.filter(
-      (bet) => bet.gameId !== betToCancel.gameId
-    );
-    // console.log("This is the new betslip array:", newBetSlipArray);
-    // Needs modification (what is bet.id?)
-    setBetSlipArray(newBetSlipArray);
-  }
-  function showBetSlipList() {
-    return betSlipArray.length > 0 ? true : false;
-  }
-
-  function cancelAllFromBetSlipArray() {
-    setBetSlipArray([]);
-    placeBet();
-    setModalShow(true);
-  }
-
-  // Seeing potential payout of betSlipArray
-
+ 
   function getPotentialPayout() {
     let odds = 0;
     let allOddsAmerican = [];
@@ -93,6 +68,34 @@ export function useBetSlip(initial) {
     }
     setPotentialPayout(0);
     return 0;
+  }
+
+  const addToBetSlipArray = (betToAdd) => {
+    let oldBets = betSlipArray;
+    transition(BET_PLACED); // not working no matter where I put it
+    setBetSlipArray([betToAdd, ...oldBets]);
+  };
+
+  function cancelFromBetSlipArray(betToCancel) {
+    let newBetSlipArray = [];
+    newBetSlipArray = betSlipArray.filter(
+      (bet) => bet.gameId !== betToCancel.gameId
+    );
+    // console.log("This is the new betslip array:", newBetSlipArray);
+    // Needs modification (what is bet.id?)
+    setAmountWagered(0);
+    setBetSlipArray(newBetSlipArray);
+  }
+
+  function showBetSlipList() {
+    return betSlipArray.length > 0 ? true : false;
+  }
+
+  function cancelAllFromBetSlipArray() {
+    placeBet();
+    setBetSlipArray([]);
+    setAmountWagered(0);
+    setModalShow(true);
   }
 
   function placeBet() {
