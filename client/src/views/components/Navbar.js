@@ -5,7 +5,7 @@ import LogoutButton from '../components/auth buttons/LogoutButton';
 import logo from '../../styles/logoImg/logo.png';
 import ViewSelector from './ViewSelector';
 
-function Navbar({setLeagueName,transitionPage}) {
+function Navbar({setLeagueName,transitionPage, navbarRef}) {
 
   const [showLinks, setShowLinks] = useState(false)
 
@@ -13,7 +13,7 @@ function Navbar({setLeagueName,transitionPage}) {
   //   setShowLinks(!showLinks)
   // }
   return (
-    <div>
+    <div ref={navbarRef}>
       <div className="navbarWrapper">
         <div className='Navbar'>
           <div className="logoImg">

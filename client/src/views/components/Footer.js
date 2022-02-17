@@ -1,18 +1,18 @@
 import '../../styles/Footer.css'
 import logo from '../../styles/logoImg/logo.png'
 
-function Footer() {
+function Footer({ executeScroll }) {
   return (
     <div className='footer'>
       <div className="footerImg">
 
-      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="body_1" width="73" height="70">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="body_1" width="73" height="70">
 
-<g transform="matrix(1.0735295 0 0 1.0769231 0 0)">
-	<g transform="matrix(1.0793651 0 0 1.0833334 0 0)">
-		<g transform="matrix(0.79746836 0 0 0.8000001 0 0)">
-			<g transform="matrix(0.6220473 0 0 0.625 0 0)">
-				<g transform="matrix(0.16282052 0 0 0.16304348 0 0)">
+          <g transform="matrix(1.0735295 0 0 1.0769231 0 0)">
+            <g transform="matrix(1.0793651 0 0 1.0833334 0 0)">
+              <g transform="matrix(0.79746836 0 0 0.8000001 0 0)">
+                <g transform="matrix(0.6220473 0 0 0.625 0 0)">
+                  <g transform="matrix(0.16282052 0 0 0.16304348 0 0)">
                     <path d="M0 0L0 736L780 736L780 0L0 0z" stroke="none" fill="#FEFEFE" fill-rule="nonzero" />
                     <path d="M370 56L370 57L377 56L370 56z" stroke="none" fill="#949494" fill-rule="nonzero" />
                     <path d="M375 56L375 57L381 56L375 56z" stroke="none" fill="#606060" fill-rule="nonzero" />
@@ -367,14 +367,15 @@ function Footer() {
                     <path d="M669 488L669 504L670 504L669 488z" stroke="none" fill="#949494" fill-rule="nonzero" />
                     <path d="M438 505L438 557C 447.194 557 460.149 559.399 467.811 553.2C 477.218 545.589 477.82 514.843 467.481 507.649C 460.03 502.464 446.644 505 438 505zM264 514L257.336 546L247 603L282 603L270.285 541L264 514zM438 575L438 635C 446.93 635 461.38 637.772 468.981 632.347C 479.526 624.822 480.54 588.106 470.787 579.557C 462.52 572.311 448.136 575 438 575z" stroke="none" fill="#FEFEFE" fill-rule="nonzero" />
                     <path d="M134 604L134 618L135 618L134 604zM464.667 652.333L465.333 652.667L464.667 652.333zM165 654L165 655L179 655L165 654z" stroke="none" fill="#949494" fill-rule="nonzero" />
-				</g>
-			</g>
-		</g>
-	</g>
-</g>
-</svg>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
       </div>
       <p className="inc">© 2022 $ayBet,  Inc</p>
+      <a className='go-to-top-button' onClick={executeScroll}> Click to scroll</a>
     </div>
   )
 }

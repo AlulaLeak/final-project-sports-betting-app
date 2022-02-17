@@ -14,6 +14,7 @@ import Footer from "../components/Footer";
 import OnGoingBetList from "../components/OnGoingBetList";
 import ModalMessage from "../components/ModalMessage";
 import { useUserInfo } from "../../helpers/useUserInfo";
+import { useRef } from "react";
 
 function Home() {
   const {
@@ -33,9 +34,14 @@ function Home() {
   const { pageMode, transitionPage } = usePageMode("GAMES");
   const [leagueName, setLeagueName] = useState("");
 
+  const navbarRef = useRef(null)
+
+  const executeScroll = () => navbarRef.current.scrollIntoView()   
+
   return (
     <div className="home-greeting-event-separator">
       <Navbar
+      navbarRef={navbarRef}
       setLeagueName={setLeagueName}
       transitionPage={transitionPage} />
       <HomeGreeting />
@@ -65,7 +71,9 @@ function Home() {
           {/* <MockGameList addToBetSlipArray={addToBetSlipArray} /> */}
         </>
       )}
-      <Footer />
+      <Footer
+      executeScroll={executeScroll} 
+      />
       <ModalMessage
         show={modalShow}
         onHide={() => setModalShow(false)}
