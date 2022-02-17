@@ -9,11 +9,11 @@ export function useFetch(league) {
     let options = {
       method: "GET",
       url: `https://sportspage-feeds.p.rapidapi.com/games${
-        leagueName ? leagueName : "?league=NBA"
+        leagueName ? leagueName : "?league=NHL"
       }`,
       headers: {
-        "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
-        "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY
+        "x-rapidapi-host": "sportspage-feeds.p.rapidapi.com",
+        "x-rapidapi-key": "a4bfa14385msh95345752cc73d7fp1359f2jsn167a97dbba62"
       },
     };
     return axios

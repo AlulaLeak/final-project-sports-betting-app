@@ -376,7 +376,7 @@ function Footer() {
       </div>
       <p className="inc">© 2022 $ayBet,  Inc</p>
 
-      <a className='go-to-top-button ' href={"HomeGreeting"}>Go up</a>
+      {/* <a className='go-to-top-button ' href={"HomeGreeting"}>Go up</a> */}
 
     </div>
   )
