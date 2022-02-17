@@ -18,6 +18,7 @@ function LeagueSelector({ setLeagueName }) {
       {/* <br className="event-filter-divider" /> */}
       <div className="event-selection-button-homepage">
         <button
+        
           value="?league=NBA"
           className="game-button"
           onClick={(e) => setLeagueName(e.target.value)}

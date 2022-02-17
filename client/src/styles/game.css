@@ -1,3 +1,8 @@
+@font-face {
+  font-family: digi;
+  src: url(fonts/digital-7.regular.ttf);
+}
+
 .fixture-card {
   margin-top: 20px;
   display: flex;
@@ -16,6 +21,13 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+.mobile-teams-playing{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+} 
 .fixture-odds {
   display: flex;
   flex-direction: column;
@@ -30,9 +42,16 @@
   justify-content: space-between;
   margin-top: 10px;
 }
+
+
+.live-score {
+font-family: digi;
+font-size: 30px;
+}
+
 .total-and-spread-alignment {
   display: block;
-    padding: 10px 30px;
+    padding: 3px 5px;
     border-radius: 12px;
     font-size: 15px;
     font-weight: bold;
@@ -46,6 +65,21 @@
     padding: 0;
     cursor: pointer;
     outline-offset: 4px;
+}
+
+@media screen and (max-width: 400px) {
+  
+  
+  .total-points-bet {
+  margin-left: 15px;
+  }
+
+  .mobile-teams-playing{
+    font-size: 5px;
+    color: yellowgreen;
+    
+  }
+
 }
 
 .pushable:active .front {

@@ -1,9 +1,10 @@
 .logout-button {
   cursor: pointer;
   font-weight: 600;
-  font-size: x-large;
+  font-size: 15px;
   color: #00AFF0;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Roboto', sans-serif;
   margin-right: 25px;
   margin-bottom: 10px;
+  text-decoration: none;
 }

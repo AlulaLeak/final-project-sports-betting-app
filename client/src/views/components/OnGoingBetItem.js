@@ -6,10 +6,12 @@ function OnGoingBetItem(props) {
 
   return (
     <>
+
       {onGoingBetSlip &&
         onGoingBetSlip.map((singleBet, idx) => {
           return <EachSingleOnGoingBetItem key={idx} singleBet={singleBet} />;
         })}
+    
     </>
   );
 }

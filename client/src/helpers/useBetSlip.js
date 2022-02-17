@@ -124,7 +124,6 @@ export function useBetSlip(initial) {
     getPotentialPayout,
     setAmountWagered,
     placeBet,
-    getOnGoingBets,
     cancelAllFromBetSlipArray,
     setModalShow,
     modalShow
