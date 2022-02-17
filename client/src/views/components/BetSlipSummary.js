@@ -6,15 +6,27 @@ import { useState } from "react";
 import ModalMessage from "./ModalMessage";
 
 function BetSlipSummary(props) {
-  const { betSlipArray, setAmountWagered, getPotentialPayout, placeBet, cancelAllFromBetSlipArray } =
-    props;
+  const {
+    betSlipArray,
+    setAmountWagered,
+    getPotentialPayout,
+    placeBet,
+    cancelAllFromBetSlipArray,
+    amountWagered,
+    setNewBalanceAfterCheckout,
+  } = props;
+
   const [modalShow, setModalShow] = useState(false);
-  const { user } = useAuth0();
+
   return (
     <>
       <div className="main-betslip-summary-box">
-        {betSlipArray.length > 1 && <div className="bet-type-summary-title">Parlay</div>}
-        {betSlipArray.length === 1 && <div className="bet-type-summary-title">Single Bet</div>}
+        {betSlipArray.length > 1 && (
+          <div className="bet-type-summary-title">Parlay</div>
+        )}
+        {betSlipArray.length === 1 && (
+          <div className="bet-type-summary-title">Single Bet</div>
+        )}
         <div className="total-wager">
           <div>Total Wager</div>
           <div className="dollar-sign-input">
@@ -30,9 +42,12 @@ function BetSlipSummary(props) {
         <button
           className="place-bet-button"
           onClick={() => {
+            setNewBalanceAfterCheckout(amountWagered);
             cancelAllFromBetSlipArray();
           }}
-        >Place Bet</button>
+        >
+          Place Bet
+        </button>
       </div>
     </>
   );

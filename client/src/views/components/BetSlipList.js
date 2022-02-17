@@ -12,6 +12,8 @@ function BetSlipList(props) {
     placeBet,
     cancelAllFromBetSlipArray,
     balance,
+    amountWagered,
+    setNewBalanceAfterCheckout,
   } = props;
   console.log("This is the users balance:", balance);
 
@@ -41,6 +43,8 @@ function BetSlipList(props) {
           betSlipArray={betSlipArray}
           placeBet={placeBet}
           cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
+          amountWagered={amountWagered}
+          setNewBalanceAfterCheckout={setNewBalanceAfterCheckout}
         />
       )}
     </>
