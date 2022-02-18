@@ -71,7 +71,7 @@ function BetSlipSummary(props) {
         onHide={() => setModalShow(false)}
         type="error"
         header="Alert"
-        message1="I don't have enough balance to place a bet!"
+        message1="You don't have enough balance to place a bet!"
       />
 
       </div>
