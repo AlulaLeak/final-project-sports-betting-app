@@ -11,7 +11,7 @@ export function useUserInfo() {
       userId: user.sub,
     };
     return axios
-      .post("http://localhost:3019/balance", options)
+      .post("http://localhost:3020/balance", options)
       .then(function (response) {
         setBalance(response.data);
       })
@@ -27,7 +27,7 @@ export function useUserInfo() {
     };
 
     return axios
-      .post("http://localhost:3019/balance/after-checkout", options)
+      .post("http://localhost:3020/balance/after-checkout", options)
       .then(function (response) {
         const NewBalanceAfterCheckout = parseInt(response.data);
         setBalance(NewBalanceAfterCheckout);

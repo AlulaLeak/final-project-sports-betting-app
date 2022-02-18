@@ -2,12 +2,25 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 3019;
+const PORT = process.env.PORT || 3020;
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const http = require("http");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+const axios = require("axios").default;
+
+// Date Function
+const getTodayAndTmoDate = require("./helpers/getTodayAndTmoDate.js");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -22,6 +35,98 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
+
+//Fetch Api - NHL
+let fetchedNhlGameInfo;
+setInterval(() => {
+  let options = {
+    method: "GET",
+    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
+    headers: {
+      "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
+      "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
+    },
+  };
+  return axios
+    .request(options)
+    .then(function (response) {
+      fetchedNhlGameInfo = response.data.results;
+      console.log("This is the fetched game info: ", fetchedNhlGameInfo);
+      // response.data.results && setGames(response.data.results);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}, 5000);
+
+//Fetch Api - NBA
+let fetchedNbaGameInfo;
+setInterval(() => {
+  let options = {
+    method: "GET",
+    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
+    headers: {
+      "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
+      "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
+    },
+  };
+  return axios
+    .request(options)
+    .then(function (response) {
+      fetchedNbaGameInfo = response.data.results;
+      console.log("This is the fetched game info: ", fetchedNbaGameInfo);
+      // response.data.results && setGames(response.data.results);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}, 5000);
+
+//Fetch Api - NFL
+let fetchedNflGameInfo;
+setInterval(() => {
+  let options = {
+    method: "GET",
+    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
+    headers: {
+      "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
+      "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
+    },
+  };
+  return axios
+    .request(options)
+    .then(function (response) {
+      fetchedNflGameInfo = response.data.results;
+      console.log("This is the fetched game info: ", fetchedNflGameInfo);
+      // response.data.results && setGames(response.data.results);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}, 5000);
+
+//Fetch Api - MLB
+let fetchedMlbGameInfo;
+setInterval(() => {
+  let options = {
+    method: "GET",
+    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
+    headers: {
+      "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
+      "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
+    },
+  };
+  return axios
+    .request(options)
+    .then(function (response) {
+      fetchedMlbGameInfo = response.data.results;
+      console.log("This is the fetched game info: ", fetchedMlbGameInfo);
+      // response.data.results && setGames(response.data.results);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}, 5000);
 
 app.get("/", (req, res) => {
   res.send("yeshhh");
@@ -509,6 +614,24 @@ app.post("/balance/after-checkout", (req, res) => {
   );
 });
 
-app.listen(PORT, () => {
+io.on("connection", (socket) => {
+  console.log("a user connected: ", socket.id);
+
+  setInterval(() => {
+    const allLeagues = {
+      fetchedNhlGameInfo,
+      fetchedNbaGameInfo,
+      fetchedNflGameInfo,
+      fetchedMlbGameInfo,
+    };
+    socket.emit("working_test_message", allLeagues);
+  }, 7000);
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected: ", socket.id);
+  });
+});
+
+server.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

@@ -6,6 +6,8 @@ import Login from "./views/pages/Login";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useEffect } from "react";
+// import io from "socket.io-client";
+// const socket = io.connect("http://localhost:3020");
 
 function App() {
   const { isAuthenticated, isLoading, user } = useAuth0();
@@ -14,7 +16,7 @@ function App() {
     // if the user is authenticated
     isAuthenticated &&
       axios
-        .post("http://localhost:3019/users", user) // changed to my backend port
+        .post("http://localhost:3020/users", user) // changed to my backend port
         .then(function (response) {
           // console.log(response);
         })
@@ -26,12 +28,8 @@ function App() {
   return (
     <div>
       {/* <Navbar /> */}
-      {isLoading ? 
-        <div>Loading</div>
-        : isAuthenticated ? <Home /> : <Login />}
-
+      {isLoading ? <div>Loading</div> : isAuthenticated ? <Home /> : <Login />}
     </div>
-    
   );
 }
 
