@@ -81,7 +81,7 @@ function Home() {
         show={modalShow}
         onHide={() => setModalShow(false)}
         type="alert"
-        header="Alert"
+        header="Thank you!"
         message1="Your bet has been placed!"
       />
     </div>
