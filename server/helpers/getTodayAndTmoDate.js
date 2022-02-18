@@ -10,7 +10,7 @@ function getTodayAndTmoDate() {
 
   const dateRange = "date=" + tdy + "," + tmo;
 
-  console.log(dateRange);
+  // console.log(dateRange);
   return dateRange;
 }
 module.exports = getTodayAndTmoDate;

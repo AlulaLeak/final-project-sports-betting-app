@@ -116,7 +116,7 @@ export function useBetSlip(initial) {
     axios
       .post("http://localhost:3020/placebet", options) // changed to my backend port
       .then(function (response) {
-        // console.log(response);
+        console.log(response);
       })
       .catch(function (err) {
         console.error(err);
@@ -134,6 +134,6 @@ export function useBetSlip(initial) {
     cancelAllFromBetSlipArray,
     setModalShow,
     modalShow,
-    amountWagered,
+    amountWagered
   };
 }

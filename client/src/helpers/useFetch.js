@@ -7,7 +7,7 @@ export function useFetch(league = "?league=NHL") {
   const [games, setGames] = useState("");
 
   socket.on("working_test_message", (allGames) => {
-    console.log("This is a two day game list: ", allGames);
+    // console.log("This is a two day game list: ", allGames);
 
     const {
       fetchedNhlGameInfo,
@@ -16,7 +16,7 @@ export function useFetch(league = "?league=NHL") {
       fetchedMlbGameInfo,
     } = allGames;
 
-    console.log("This is tdy and tmo nba games: ", fetchedNbaGameInfo);
+    // console.log("This is tdy and tmo nba games: ", fetchedNbaGameInfo);
 
     if (leagueName === "?league=NHL") {
       setGames(fetchedNhlGameInfo);
