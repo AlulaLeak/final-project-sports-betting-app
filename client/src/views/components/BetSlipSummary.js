@@ -23,10 +23,10 @@ function BetSlipSummary(props) {
   const isDisabled = () => {
     console.log("HERE:", amountWagered, balance);
     if (amountWagered > balance) {
-      setModalShow(true);      
+      setModalShow(true);
     } else {
       setNewBalanceAfterCheckout(amountWagered);
-      cancelAllFromBetSlipArray();  
+      cancelAllFromBetSlipArray();
     }
   }
 
@@ -45,7 +45,7 @@ function BetSlipSummary(props) {
             <p>$</p>
             <input type="number" onChange={(e) =>  //
               setAmountWagered(e.target.value)}
-              /> 
+            />
           </div>
         </div>
         <div className="cashout-title">CASH OUT</div>
@@ -53,26 +53,23 @@ function BetSlipSummary(props) {
           <div>Potential Payout</div>
           <div>$ {getPotentialPayout()}</div>
         </div>
-      
-        <button           
+
+        <button
           className="place-bet-button"
-          onClick={() => {  
-            
-            isDisabled();      
+          onClick={() => {
+            isDisabled();
           }}
-          // disabled={amountWagered > balance}
-          
         >
           Place Bet
         </button>
 
         <ModalMessage
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        type="error"
-        header="Alert"
-        message1="You don't have enough balance to place a bet!"
-      />
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          type="error"
+          header="Alert"
+          message1="You don't have enough balance to place a bet!"
+        />
 
       </div>
     </>
