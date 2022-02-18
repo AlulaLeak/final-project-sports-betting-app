@@ -460,7 +460,7 @@ function Selectable(props) {
         show={modalShow}
         onHide={() => setModalShow(false)}
         type="error"
-        header="Error message"
+        header="Bet duplication"
         message1="You cannot place bets on the same team, in a single parlay."
         message2="Finish placing your bet above or add bets from other games before adding another to your bet slip."
       />
