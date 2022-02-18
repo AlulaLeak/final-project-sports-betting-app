@@ -19,7 +19,7 @@ function BetSlipList(props) {
 
   return (
     <>
-      <div class="balance">Balance: {balance && balance}</div>
+      <div className="balance">Balance: {balance && balance}</div>
 
       {!betSlipArray[0] && (
         <>

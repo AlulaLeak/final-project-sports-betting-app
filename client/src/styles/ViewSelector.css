@@ -29,6 +29,14 @@
     padding: 5px;
     margin: 2px 0 0 10px;
   /* font-weight: 550; */
+  }
 
+  .view-select-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background-color: white;
+    margin-bottom: 12px;
+    margin-left: 20px;
   }
 }

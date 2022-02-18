@@ -8,3 +8,19 @@
   margin-bottom: 10px;
   text-decoration: none;
 }
+
+
+@media all and (max-width: 400px) {
+
+  .logout-button {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    color: #00AFF0;
+    font-family: 'Roboto', sans-serif;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    text-decoration: none;
+  }
+
+}

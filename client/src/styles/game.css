@@ -67,20 +67,24 @@ font-size: 30px;
     outline-offset: 4px;
 }
 
-@media screen and (max-width: 400px) {
-  
-  
-  .total-points-bet {
-  margin-left: 15px;
-  }
+@media all and (max-width: 400px) {
 
-  .mobile-teams-playing{
-    font-size: 5px;
-    color: yellowgreen;
-    
+  .fixture-card {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #00AFF0;
+    margin: 10px;
+    padding: 10px;
+    min-height: 300px;
+    color: white;
+    font-size: 12px;
   }
 
 }
+
 
 .pushable:active .front {
   transform: translateY(-2px);

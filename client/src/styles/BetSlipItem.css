@@ -14,11 +14,13 @@
 .betslip-item-box-center { 
   display: flex;
   justify-content: center;  
-  padding: 10px;
+  /* padding: 5px; */
   font-size: 25px;
   font-weight: 500;
-  background-color: #ffffff;
+  background-color: #adb5bd;
   font-family: 'Bebas Neue', cursive;
+  /* border: 4px inset #00AFF0; */
+  /* margin: 10px; background-color: white; */
 }
 
 .team-bet-game {
