@@ -19,10 +19,16 @@ function BetSlipSummary(props) {
   } = props;
 
   const [modalShow, setModalShow] = useState(false);
-  // console.log("Here is amount:", amountWagered);
-  // console.log("Here is balance:", balance);
-  // console.log("Greater:", setNewBalanceAfterCheckout(amountWagered));
 
+  const isDisabled = () => {
+    console.log("HERE:", amountWagered, balance);
+    if (amountWagered > balance) {
+      setModalShow(true);      
+    } else {
+      setNewBalanceAfterCheckout(amountWagered);
+      cancelAllFromBetSlipArray();  
+    }
+  }
 
   return (
     <>
@@ -50,14 +56,23 @@ function BetSlipSummary(props) {
       
         <button           
           className="place-bet-button"
-          onClick={() => {
-            setNewBalanceAfterCheckout(amountWagered);
-            cancelAllFromBetSlipArray();            
+          onClick={() => {  
+            
+            isDisabled();      
           }}
-          disabled={amountWagered > balance}
+          // disabled={amountWagered > balance}
+          
         >
           Place Bet
         </button>
+
+        <ModalMessage
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        type="error"
+        header="Alert"
+        message1="I don't have enough balance to place a bet!"
+      />
 
       </div>
     </>
