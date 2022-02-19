@@ -57,7 +57,7 @@ setInterval(() => {
     .catch(function (error) {
       console.error(error);
     });
-}, 5000);
+}, 10000);
 
 //Fetch Api - NBA
 let fetchedNbaGameInfo;
