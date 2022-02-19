@@ -15,7 +15,6 @@ function BetSlipList(props) {
     amountWagered,
     setNewBalanceAfterCheckout,
   } = props;
-  console.log("This is the users balance:", balance);
 
   return (
     <>
