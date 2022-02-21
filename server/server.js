@@ -454,6 +454,7 @@ setInterval(() => {
       db.query(unResolvedSingleBetQuery, unResolvedSingleBetValues).then(
         (unResolvedBetSlipOutComes) => {
           const betOutcomeArray = unResolvedBetSlipOutComes.rows[0].array_agg;
+          console.log("This is the unresolved betslip: ", unResolvedSlip);
           betOutcomeArray.map((outcomeOfSingleBet) => {
             outcomeOfSingleBet === false &&
               db.query(
@@ -481,8 +482,9 @@ setInterval(() => {
                 `
                 UPDATE users
                 SET balance = balance + (SELECT potential_payout FROM bet_slip WHERE id = $1)
+                WHERE users.id = $2;
                 `,
-                [unResolvedSlip.id]
+                [unResolvedSlip.id, unResolvedSlip.user_id]
               );
             });
           }
