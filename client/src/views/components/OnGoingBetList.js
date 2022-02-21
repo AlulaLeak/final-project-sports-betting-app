@@ -39,7 +39,7 @@ function OnGoingBetList() {
                   </div>
               </div>
               </>
-            )
+            );
           }
 
         })}

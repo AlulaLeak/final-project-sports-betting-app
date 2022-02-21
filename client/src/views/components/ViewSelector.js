@@ -5,27 +5,27 @@ import "../../styles/ViewSelector.css";
 function ViewSelector(props) {
   const { transitionPage, setLeagueName } = props;
 
-  function handleProfileClick(e) {
-    setLeagueName("");
-    transitionPage(e.target.value);
-  }
+  // function handleProfileClick(e) {
+  //   setLeagueName("");
+  //   transitionPage(e.target.value);
+  // }
 
   return (
     <div className="view-select-wrapper">
-      <h6
-        onClick={(e) => handleProfileClick(e)}
+      <button
+        onClick={(e) => transitionPage(e.target.value)}
         value="PROFILE"
         className="selector-card"
       >
         On-Going Bets
-      </h6>
-      <h6
+      </button>
+      <button
         onClick={(e) => transitionPage(e.target.value)}
         value="GAMES"
         className="selector-card"
       >
         Live Games{" "}
-      </h6>
+      </button>
     </div>
   );
 }
