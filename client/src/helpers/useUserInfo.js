@@ -1,24 +1,20 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:3021");
 
 export function useUserInfo() {
   const { user } = useAuth0();
   const [balance, setBalance] = useState(0);
 
-  useEffect(() => {
-    const options = {
-      userId: user.sub,
-    };
-    return axios
-      .post("http://localhost:3020/balance", options)
-      .then(function (response) {
-        setBalance(response.data);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-  }, [balance]);
+  setInterval(() => {
+    socket.emit("user_info", user);
+  }, 3000);
+
+  socket.on("user_balance", (usrBalance) => {
+    setBalance(usrBalance.balance.toFixed(2));
+  });
 
   function setNewBalanceAfterCheckout(amountWagered) {
     const options = {
@@ -27,7 +23,7 @@ export function useUserInfo() {
     };
 
     return axios
-      .post("http://localhost:3020/balance/after-checkout", options)
+      .post("http://localhost:3021/balance/after-checkout", options)
       .then(function (response) {
         const NewBalanceAfterCheckout = parseInt(response.data);
         setBalance(NewBalanceAfterCheckout);
