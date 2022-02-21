@@ -3,6 +3,7 @@ import BetSlipItem from "./BetSlipItem";
 import BetSlipSummary from "./BetSlipSummary";
 import "../../styles/BetSlipItem.css";
 
+
 function BetSlipList(props) {
   const {
     cancelFromBetSlipArray,
@@ -44,6 +45,7 @@ function BetSlipList(props) {
           cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
           amountWagered={amountWagered}
           setNewBalanceAfterCheckout={setNewBalanceAfterCheckout}
+          balance={balance}
         />
       )}
     </>

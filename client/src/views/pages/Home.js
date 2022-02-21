@@ -37,14 +37,14 @@ function Home() {
 
   const navbarRef = useRef(null)
 
-  const executeScroll = () => navbarRef.current.scrollIntoView()   
+  const executeScroll = () => navbarRef.current.scrollIntoView()
 
   return (
     <div className="home-greeting-event-separator">
       <Navbar
-      navbarRef={navbarRef}
-      setLeagueName={setLeagueName}
-      transitionPage={transitionPage} />
+        navbarRef={navbarRef}
+        setLeagueName={setLeagueName}
+        transitionPage={transitionPage} />
       <HomeGreeting />
       <BetSlipList
         cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
@@ -59,7 +59,7 @@ function Home() {
         amountWagered={amountWagered}
         setNewBalanceAfterCheckout={setNewBalanceAfterCheckout}
       />
-    
+
       {pageMode === "PROFILE" && (
         <OnGoingBetList getOnGoingBets={getOnGoingBets} />
       )}
@@ -75,13 +75,13 @@ function Home() {
         </>
       )}
       <Footer
-      executeScroll={executeScroll} 
+        executeScroll={executeScroll}
       />
       <ModalMessage
         show={modalShow}
         onHide={() => setModalShow(false)}
         type="alert"
-        header="Alert"
+        header="Thank you!"
         message1="Your bet has been placed!"
       />
     </div>

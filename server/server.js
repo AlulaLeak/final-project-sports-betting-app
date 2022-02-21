@@ -954,7 +954,7 @@ app.post("/balance", (req, res) => {
     `;
   db.query(getUserBalanceQuery, getUserBalanceValue).then((response) => {
     res.send(response.rows[0].balance.toString());
-    // console.log("The user's balance is:", response.rows[0].balance);
+    console.log("The user's balance is:", response.rows[0].balance);
   });
 });
 

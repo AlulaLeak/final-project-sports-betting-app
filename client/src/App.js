@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       {/* <Navbar /> */}
-      {isLoading ? <div>Loading</div> : isAuthenticated ? <Home /> : <Login />}
+      {isLoading ? <div className="loader"><span>Loading</span></div> : isAuthenticated ? <Home /> : <Login />}
     </div>
   );
 }

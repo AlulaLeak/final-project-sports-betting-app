@@ -13,7 +13,9 @@ function getTodayAndTmoDate() {
   const ystdyStr = yesterday.toISOString();
   const ystdy = ystdyStr.substring(0, 10);
 
+
   const dateRange = "date=" + ystdy;
+
   return dateRange;
 }
 module.exports = getTodayAndTmoDate;

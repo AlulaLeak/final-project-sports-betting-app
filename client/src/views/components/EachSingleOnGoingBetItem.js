@@ -3,6 +3,7 @@ import "../../styles/OnGoingBetList.css";
 
 function EachSingleOnGoingBetItem(props) {
   const { singleBet } = props;
+
   return (
     <>
       <div className="single-bet-teams">
