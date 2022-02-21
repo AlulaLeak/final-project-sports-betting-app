@@ -1,13 +1,12 @@
 import { useState } from "react";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:3020");
+const socket = io.connect("http://localhost:3021");
 
 export const useFetch = (league = "?league=NHL") => {
   const leagueName = league;
   const [games, setGames] = useState("");
 
-  socket.on("working_test_message", (allGames) => {
-
+  socket.on("league_games", (allGames) => {
     const {
       fetchedNhlGameInfo,
       fetchedNbaGameInfo,
@@ -15,8 +14,6 @@ export const useFetch = (league = "?league=NHL") => {
       fetchedMlbGameInfo,
       fetchedAllGameInfo,
     } = allGames;
-
-
 
     leagueName === "?league=NHL" && setGames(fetchedNhlGameInfo);
     leagueName === "?league=NBA" && setGames(fetchedNbaGameInfo);

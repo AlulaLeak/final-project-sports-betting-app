@@ -3,7 +3,7 @@ require("dotenv").config();
 const crypto = require("crypto");
 
 // Web server config
-const PORT = process.env.PORT || 3020;
+const PORT = process.env.PORT || 3021;
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -494,14 +494,19 @@ setInterval(() => {
   });
 }, 5000);
 
+setInterval(() => {}, 2000);
+
 app.get("/", (req, res) => {
   res.send("yeshhh");
 });
 
+let usrId;
+let userBalance;
 app.post("/users", (req, res) => {
   res.send("request came through!");
 
   const { name, picture, sub: id, email, nickname } = req.body;
+  usrId = id;
   const selectUserValues = [id];
   const selectionQueryString = `
   SELECT *
@@ -945,21 +950,6 @@ app.post("/seebets", (req, res) => {
     .then((aresponse) => {});
 });
 
-app.post("/balance", (req, res) => {
-  const { userId } = req.body;
-
-  const getUserBalanceValue = [userId];
-  const getUserBalanceQuery = `
-  SELECT balance
-  FROM users
-  WHERE id = $1;
-    `;
-  db.query(getUserBalanceQuery, getUserBalanceValue).then((response) => {
-    res.send(response.rows[0].balance.toString());
-    console.log("The user's balance is:", response.rows[0].balance);
-  });
-});
-
 app.post("/balance/after-checkout", (req, res) => {
   const { amountWagered, userId } = req.body;
 
@@ -972,7 +962,7 @@ app.post("/balance/after-checkout", (req, res) => {
   `;
   db.query(setBalanceDifferenceQuery, balanceDifferenceValue).then(
     (response) => {
-      res.send(response.rows[0].balance.toString());
+      res.send(response.rows[0].balance.toFixed(2).toString());
     }
   );
 });
@@ -986,11 +976,25 @@ io.on("connection", (socket) => {
       fetchedMlbGameInfo,
       fetchedAllGameInfo,
     };
-    socket.emit("working_test_message", allLeagues);
-  }, 7000);
+    socket.emit("league_games", allLeagues);
+  }, 1000);
 
   socket.on("disconnect", () => {
     console.log("User disconnected: ", socket.id);
+  });
+
+  socket.on("user_info", (userInfo) => {
+    db.query(
+      `
+      SELECT balance
+      FROM users
+      WHERE id = $1;
+      `,
+      [userInfo.sub]
+    ).then((res) => {
+      const blnce = res.rows[0];
+      socket.emit("user_balance", blnce);
+    });
   });
 });
 

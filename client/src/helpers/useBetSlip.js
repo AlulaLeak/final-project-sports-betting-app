@@ -15,7 +15,6 @@ export function useBetSlip(initial) {
 
   const [modalShow, setModalShow] = useState(false);
 
- 
   function getPotentialPayout() {
     let odds = 0;
     let allOddsAmerican = [];
@@ -114,7 +113,7 @@ export function useBetSlip(initial) {
     };
 
     axios
-      .post("http://localhost:3020/placebet", options) // changed to my backend port
+      .post("http://localhost:3021/placebet", options) // changed to my backend port
       .then(function (response) {
         console.log(response);
       })
@@ -134,6 +133,6 @@ export function useBetSlip(initial) {
     cancelAllFromBetSlipArray,
     setModalShow,
     modalShow,
-    amountWagered
+    amountWagered,
   };
 }
