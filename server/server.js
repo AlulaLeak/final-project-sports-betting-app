@@ -1,5 +1,6 @@
 // load .env data into process.env
 require("dotenv").config();
+const crypto = require("crypto");
 
 // Web server config
 const PORT = process.env.PORT || 3020;
@@ -26,6 +27,7 @@ const getTodayAndTmoDate = require("./helpers/getTodayAndTmoDate.js");
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const { response } = require("express");
+const { Console } = require("console");
 const db = new Pool(dbParams);
 db.connect();
 
@@ -36,58 +38,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
 
-//Fetch Api - NHL
+//Fetch Games Score and Odds
+let fetchedAllGameInfo;
 let fetchedNhlGameInfo;
-setInterval(() => {
-  let options = {
-    method: "GET",
-    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
-    headers: {
-      "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
-      "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
-    },
-  };
-  return axios
-    .request(options)
-    .then(function (response) {
-      fetchedNhlGameInfo = response.data.results;
-      console.log("This is the fetched game info: ", fetchedNhlGameInfo);
-      // response.data.results && setGames(response.data.results);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}, 10000);
-
-//Fetch Api - NBA
 let fetchedNbaGameInfo;
-setInterval(() => {
-  let options = {
-    method: "GET",
-    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
-    headers: {
-      "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
-      "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
-    },
-  };
-  return axios
-    .request(options)
-    .then(function (response) {
-      fetchedNbaGameInfo = response.data.results;
-      console.log("This is the fetched game info: ", fetchedNbaGameInfo);
-      // response.data.results && setGames(response.data.results);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}, 5000);
-
-//Fetch Api - NFL
 let fetchedNflGameInfo;
+let fetchedMlbGameInfo;
+let fetchedFinishedGameInfo;
+let fetchedOnGoingGameInfo;
+let fetchedScheduledGameInfo;
 setInterval(() => {
   let options = {
     method: "GET",
-    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
+    url: `https://sportspage-feeds.p.rapidapi.com/games/?${getTodayAndTmoDate()}`,
     headers: {
       "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
       "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
@@ -95,37 +58,438 @@ setInterval(() => {
   };
   return axios
     .request(options)
-    .then(function (response) {
-      fetchedNflGameInfo = response.data.results;
-      console.log("This is the fetched game info: ", fetchedNflGameInfo);
-      // response.data.results && setGames(response.data.results);
+    .then((response) => {
+      fetchedAllGameInfo = response.data.results;
+      fetchedNbaGameInfo = fetchedAllGameInfo.filter(
+        (game) => game.details.league === "NBA"
+      );
+      fetchedNflGameInfo = fetchedAllGameInfo.filter(
+        (game) => game.details.league === "NFL"
+      );
+      fetchedNhlGameInfo = fetchedAllGameInfo.filter(
+        (game) => game.details.league === "NHL"
+      );
+      fetchedMlbGameInfo = fetchedAllGameInfo.filter(
+        (game) => game.details.league === "MLB"
+      );
+      fetchedFinishedGameInfo = fetchedAllGameInfo.filter(
+        (game) => game.status === "final" || !game.status
+      );
+      fetchedOnGoingGameInfo = fetchedAllGameInfo.filter(
+        (game) => game.status === "in progress"
+      );
+      fetchedScheduledGameInfo = fetchedAllGameInfo.filter(
+        (game) => game.status === "scheduled"
+      );
+      return fetchedFinishedGameInfo;
+    })
+    .then((finishedGameInfo) => {
+      !finishedGameInfo[0] && console.log("Games aren't finished.");
+
+      finishedGameInfo.map((game) => {
+        const getUnResolvedBetsValues = [game.gameId];
+        const getUnResolvedBetsQuery = `
+        SELECT *
+        FROM single_bet
+        WHERE win IS NULL AND game_id = $1;
+        `;
+        db.query(getUnResolvedBetsQuery, getUnResolvedBetsValues).then(
+          (unResolvedBets) => {
+            const unResolvedBetArray = unResolvedBets.rows;
+
+            unResolvedBetArray.map((unResolvedBet) => {
+              console.log(
+                "this is the games of the unresolved bets : ",
+                unResolvedBet
+              );
+              const {
+                bet_on_home,
+                bet_on_away,
+                bet_on_over,
+                bet_on_under,
+                total,
+                spread,
+                id,
+                bet_slip_id,
+              } = unResolvedBet;
+              const gameTotal =
+                game.scoreboard.score.away + game.scoreboard.score.home;
+              console.log(
+                "This is the gameTotal for the unresolved bet: ",
+                gameTotal,
+                " -  This is the total wagered on: ",
+                total
+              );
+              if (total) {
+                // winner!
+                if (
+                  (bet_on_under && total > gameTotal) ||
+                  (bet_on_over && total < gameTotal)
+                ) {
+                  db.query(
+                    `
+                    UPDATE single_bet
+                      SET win = TRUE
+                      WHERE id = $1;
+                    `,
+                    [id]
+                  );
+                }
+                if (
+                  (bet_on_under && total < gameTotal) ||
+                  (bet_on_over && total > gameTotal)
+                ) {
+                  // loser!
+                  db.query(
+                    `
+                    UPDATE single_bet
+                      SET win = FALSE
+                      WHERE id = $1;
+                    `,
+                    [id]
+                  );
+                }
+              }
+              if (
+                // push!
+                game.scoreboard.score.home - game.scoreboard.score.away ===
+                  spread ||
+                game.scoreboard.score.away - game.scoreboard.score.home ===
+                  spread ||
+                total === gameTotal
+              ) {
+                console.log("Program knows this is a push!");
+                const getNumberOfBetsInBetSlipValue = [bet_slip_id];
+                const getNumberOfBetsInBetSlipQuery = `
+                      SELECT count(*), bet_slip.amount_wagered, users.id
+                      FROM single_bet
+                      JOIN bet_slip ON bet_slip.id = bet_slip_id
+                      JOIN users ON bet_slip.user_id = users.id
+                      WHERE bet_slip.id = $1
+                      GROUP BY bet_slip.amount_wagered, users.id;
+                    `;
+                db.query(
+                  getNumberOfBetsInBetSlipQuery,
+                  getNumberOfBetsInBetSlipValue
+                ).then((numberOfBetsAndAmountWageredAndUser) => {
+                  const {
+                    amount_wagered: fullAmountWagered,
+                    count: numberOfBets,
+                    id: userid,
+                  } = numberOfBetsAndAmountWageredAndUser.rows[0];
+                  const amountForUser = fullAmountWagered / numberOfBets;
+
+                  const giveUserMoneyBackForPushValue = [amountForUser, userid];
+                  const subractBetSlipMoneyBackForPushValue = [
+                    amountForUser,
+                    bet_slip_id,
+                  ];
+                  const query = `
+                      UPDATE users
+                      SET balance = balance + $1
+                      WHERE id = $2;
+
+                      `;
+                  db.query(query, giveUserMoneyBackForPushValue);
+                  const giveUserMoneyBackForPushQuery = `
+
+                          UPDATE bet_slip
+                          SET amount_wagered = amount_wagered - $1
+                          WHERE id = $2;
+                      `;
+                  db.query(
+                    giveUserMoneyBackForPushQuery,
+                    subractBetSlipMoneyBackForPushValue
+                  )
+                    .then(() => {
+                      const betSlipIdent = crypto
+                        .randomBytes(20)
+                        .toString("hex");
+                      db.query(
+                        `
+                          INSERT INTO bet_slip(
+                            id,
+                            user_id,
+                            amount_wagered,
+                            potential_payout,
+                            win,
+                            created_on
+                            )
+                          VALUES(
+                            $1,
+                            $2,
+                            $3,
+                            $3,
+                            TRUE,
+                            current_timestamp
+                            )
+                          RETURNING *;
+                          `,
+                        [betSlipIdent, userid, amountForUser]
+                      );
+                      return betSlipIdent;
+                    })
+                    .then((betSlipId) => {
+                      db.query(
+                        `
+                            ALTER TABLE single_bet
+                            DROP CONSTRAINT IF EXISTS single_bet_bet_slip_id_fkey;
+                            `
+                      ).then(() => {
+                        db.query(
+                          `
+                              UPDATE single_bet
+                              SET bet_slip_id = $1
+                              WHERE id = $2
+                              RETURNING *;`,
+                          [betSlipId, id]
+                        )
+                          .then(() => {
+                            db.query(
+                              `
+                                UPDATE single_bet
+                                SET win = TRUE
+                                WHERE
+                                  id = $1;
+                                `,
+                              [id]
+                            );
+                          })
+                          .then((res) => {
+                            // ****
+                            db.query(
+                              `
+                              SELECT odds, bet_slip.amount_wagered
+                              FROM single_bet
+                              JOIN bet_slip ON bet_slip_id = bet_slip.id
+                              WHERE bet_slip_id = $1;
+                              `,
+                              [bet_slip_id]
+                            ).then((oddsAndAmountWageredFromNewBetSlip) => {
+                              console.log(
+                                "These should be the new indiviual odds for each game in the betslip: ",
+                                oddsAndAmountWageredFromNewBetSlip.rows
+                              );
+                              const aWagered =
+                                oddsAndAmountWageredFromNewBetSlip.rows[0]
+                                  .amount_wagered;
+                              let oddArray = [];
+                              let allOdds = [];
+                              let currentOdd = 1;
+
+                              oddsAndAmountWageredFromNewBetSlip.rows.map(
+                                (oddAndAWagered) => {
+                                  const { odds } = oddAndAWagered;
+                                  oddArray.push(odds);
+                                }
+                              );
+
+                              oddArray.map((eachOdd) => {
+                                if (eachOdd > 0) {
+                                  allOdds.push(eachOdd / 100 + 1);
+                                } else {
+                                  allOdds.push(100 / Math.abs(eachOdd) + 1);
+                                }
+                              });
+                              console.log(
+                                "This is the single number odds: ",
+                                allOdds
+                              );
+                              allOdds.map((eachnewOdd) => {
+                                currentOdd = currentOdd * eachnewOdd;
+                              });
+                              console.log(
+                                "This is the current odd: ",
+                                currentOdd
+                              );
+                              let potPayout = (
+                                parseFloat(currentOdd * aWagered) * 0.9
+                              ).toFixed(2);
+                              console.log(
+                                "This is the potential payout: ",
+                                potPayout
+                              );
+                              db.query(
+                                `
+                                    UPDATE bet_slip
+                                    SET potential_payout = $2
+                                    WHERE id = $1
+                                    RETURNING *;`,
+                                [bet_slip_id, potPayout]
+                              );
+                            });
+                          });
+                      });
+                    })
+                    .then(() => {
+                      // db.query(
+                      //   `
+                      //   ALTER TABLE single_bet
+                      //   ADD CONSTRAINT single_bet_bet_slip_id_fkey;
+                      //   `
+                      // );
+                    })
+                    .then(() => {});
+                });
+              }
+              if (spread) {
+                if (
+                  // winner!
+                  (game.scoreboard.score.away - game.scoreboard.score.home >
+                    spread &&
+                    spread < 0 &&
+                    bet_on_home) ||
+                  (game.scoreboard.score.away - game.scoreboard.score.home <
+                    spread &&
+                    spread > 0 &&
+                    bet_on_home) ||
+                  (game.scoreboard.score.home - game.scoreboard.score.away >
+                    spread &&
+                    spread < 0 &&
+                    bet_on_away) ||
+                  (game.scoreboard.score.home - game.scoreboard.score.away <
+                    spread &&
+                    spread > 0 &&
+                    bet_on_away)
+                ) {
+                  db.query(
+                    `
+                    UPDATE single_bet
+                      SET win = TRUE
+                      WHERE id = $1;
+                    `,
+                    [id]
+                  );
+                }
+                if (
+                  // loser!
+                  (game.scoreboard.score.away - game.scoreboard.score.home >
+                    spread &&
+                    spread > 0 &&
+                    bet_on_home) ||
+                  (game.scoreboard.score.away - game.scoreboard.score.home <
+                    spread &&
+                    spread < 0 &&
+                    bet_on_home) ||
+                  (game.scoreboard.score.home - game.scoreboard.score.away >
+                    spread &&
+                    spread > 0 &&
+                    bet_on_away) ||
+                  (game.scoreboard.score.home - game.scoreboard.score.away <
+                    spread &&
+                    spread < 0 &&
+                    bet_on_away)
+                ) {
+                  db.query(
+                    `
+                    UPDATE single_bet
+                      SET win = FALSE
+                      WHERE id = $1;
+                    `,
+                    [id]
+                  );
+                }
+              }
+              if (!spread && !total) {
+                if (
+                  // winner
+                  (bet_on_home &&
+                    game.scoreboard.score.home > game.scoreboard.score.away) ||
+                  (bet_on_away &&
+                    game.scoreboard.score.home < game.scoreboard.score.away)
+                ) {
+                  db.query(
+                    `
+                    UPDATE single_bet
+                      SET win = TRUE
+                      WHERE id = $1;
+                    `,
+                    [id]
+                  );
+                }
+                if (
+                  // loser
+                  (bet_on_away &&
+                    game.scoreboard.score.home > game.scoreboard.score.away) ||
+                  (bet_on_home &&
+                    game.scoreboard.score.home < game.scoreboard.score.away)
+                ) {
+                  db.query(
+                    `
+                    UPDATE single_bet
+                      SET win = FALSE
+                      WHERE id = $1;
+                    `,
+                    [id]
+                  );
+                }
+              }
+            });
+          }
+        );
+      });
     })
     .catch(function (error) {
       console.error(error);
     });
 }, 5000);
 
-//Fetch Api - MLB
-let fetchedMlbGameInfo;
 setInterval(() => {
-  let options = {
-    method: "GET",
-    url: `https://sportspage-feeds.p.rapidapi.com/games/?league=NHL&${getTodayAndTmoDate()}`,
-    headers: {
-      "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
-      "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
-    },
-  };
-  return axios
-    .request(options)
-    .then(function (response) {
-      fetchedMlbGameInfo = response.data.results;
-      console.log("This is the fetched game info: ", fetchedMlbGameInfo);
-      // response.data.results && setGames(response.data.results);
-    })
-    .catch(function (error) {
-      console.error(error);
+  db.query(
+    `
+    SELECT *
+    FROM bet_slip
+    WHERE bet_slip.win IS NULL;
+    `
+  ).then((unResolvedBetSlips) => {
+    const unResBetSlipArray = unResolvedBetSlips.rows;
+
+    unResBetSlipArray.map((unResolvedSlip) => {
+      const unResolvedSingleBetValues = [unResolvedSlip.id];
+      const unResolvedSingleBetQuery = `
+      SELECT array_agg(win)
+      FROM single_bet
+      WHERE bet_slip_id = $1;
+      `;
+      db.query(unResolvedSingleBetQuery, unResolvedSingleBetValues).then(
+        (unResolvedBetSlipOutComes) => {
+          const betOutcomeArray = unResolvedBetSlipOutComes.rows[0].array_agg;
+          betOutcomeArray.map((outcomeOfSingleBet) => {
+            outcomeOfSingleBet === false &&
+              db.query(
+                `
+              UPDATE bet_slip
+              SET win = FALSE
+              WHERE
+	            bet_slip.id = $1;
+              `,
+                [unResolvedSlip.id]
+              );
+          });
+
+          if (betOutcomeArray.every((outcome) => outcome === true)) {
+            db.query(
+              `
+              UPDATE bet_slip
+              SET win = TRUE
+              WHERE
+              bet_slip.id = $1;
+              `,
+              [unResolvedSlip.id]
+            ).then((res) => {
+              db.query(
+                `
+                UPDATE users
+                SET balance = balance + (SELECT potential_payout FROM bet_slip WHERE id = $1)
+                `,
+                [unResolvedSlip.id]
+              );
+            });
+          }
+        }
+      );
     });
+  });
 }, 5000);
 
 app.get("/", (req, res) => {
@@ -163,7 +527,7 @@ app.post("/users", (req, res) => {
           $4,
           $5
           )
-      RETURNING *`;
+      RETURNING *;`;
       !response.rows[0] &&
         db
           .query(insertionQueryString, insertionValues)
@@ -177,7 +541,6 @@ app.post("/placebet", (req, res) => {
   // bring in info from request
   const { userId, betSlipArray, amountWagered, potentialPayout } = req.body;
   // create betslipID to avoid nesting promises
-  const crypto = require("crypto");
   const betSlipId = crypto.randomBytes(20).toString("hex");
   // map through bet Slip Array to check if game exists and insert to table(games) if so
   // Insert betslip into db
@@ -335,7 +698,7 @@ app.post("/placebet", (req, res) => {
                     .catch((e) => console.error(e.stack));
                 }
               }
-              if (bet.type === "OVER") {
+              if (bet.betOn === "OVER") {
                 const overValues = [
                   betSlipId,
                   bet.gameId,
@@ -597,7 +960,6 @@ app.post("/balance", (req, res) => {
 
 app.post("/balance/after-checkout", (req, res) => {
   const { amountWagered, userId } = req.body;
-  console.log("This is the amount wagered: ", amountWagered);
 
   const balanceDifferenceValue = [amountWagered, userId];
   const setBalanceDifferenceQuery = `
@@ -608,21 +970,19 @@ app.post("/balance/after-checkout", (req, res) => {
   `;
   db.query(setBalanceDifferenceQuery, balanceDifferenceValue).then(
     (response) => {
-      console.log("This is the user's balance: ", response.rows[0].balance);
       res.send(response.rows[0].balance.toString());
     }
   );
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected: ", socket.id);
-
   setInterval(() => {
     const allLeagues = {
       fetchedNhlGameInfo,
       fetchedNbaGameInfo,
       fetchedNflGameInfo,
       fetchedMlbGameInfo,
+      fetchedAllGameInfo,
     };
     socket.emit("working_test_message", allLeagues);
   }, 7000);

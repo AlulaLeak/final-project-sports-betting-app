@@ -1,14 +1,14 @@
 import React from "react";
-import "../../styles/OnGoingBetList.css"
+import "../../styles/OnGoingBetList.css";
 
 function EachSingleOnGoingBetItem(props) {
   const { singleBet } = props;
-  // console.log(singleBet);
+
   return (
     <>
       <div className="single-bet-teams">
         {singleBet.total && singleBet.teams_playing}
-       
+
         {singleBet.total && `  |  TOTAL: `}
         {singleBet.total && singleBet.total}
         {singleBet.total && ` |  `}
