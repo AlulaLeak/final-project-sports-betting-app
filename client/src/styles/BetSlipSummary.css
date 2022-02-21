@@ -52,7 +52,7 @@
   flex-direction: row;
   align-items: center;
 }
-.place-bet-button {
+.-button {
   min-height: 45px;
   margin-top: 11px;
   border-radius: 5px;
@@ -63,4 +63,16 @@
   background-color: #50C878;
   color: white;
   z-index: 0;
+}
+
+.place-bet-button {
+  min-height: 45px;
+  margin-top: 11px;
+  border-radius: 5px;
+  font-family: 'Bebas Neue', cursive;
+  width: 50%;
+  left: 25%;
+  position: relative;
+  background-color: #50C878;
+  color: white;
 }
