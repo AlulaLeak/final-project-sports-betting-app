@@ -36,7 +36,7 @@
   font-size: 15px;
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 420px) {
 
   .ongoing-bet-bottom {
     display: flex;

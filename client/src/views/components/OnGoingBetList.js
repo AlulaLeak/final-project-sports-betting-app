@@ -28,12 +28,12 @@ function OnGoingBetList() {
                           </div>
                           <div>
 
-                        {onGoingBetSlip[0].potential_payout}
+                        {(onGoingBetSlip[0].potential_payout).toFixed(2)}
                           </div>
                       </div>
                       <div className="potential-payout-ongoing">
                         <div>Amount Wagered: &nbsp;  </div>
-                        <div>  {onGoingBetSlip[0].amount_wagered}</div>
+                        <div>  {(onGoingBetSlip[0].amount_wagered).toFixed(2)}</div>
                       </div>
                     </div>
                   </div>
