@@ -31,20 +31,22 @@ function Home() {
     setModalShow,
     amountWagered,
   } = useBetSlip([]);
-  const { balance, setNewBalanceAfterCheckout } = useUserInfo();
+  const { balance, setNewBalanceAfterCheckout, stringMoneyBalance } =
+    useUserInfo();
   const { pageMode, transitionPage } = usePageMode("GAMES");
   const [leagueName, setLeagueName] = useState("");
 
-  const navbarRef = useRef(null)
+  const navbarRef = useRef(null);
 
-  const executeScroll = () => navbarRef.current.scrollIntoView()
+  const executeScroll = () => navbarRef.current.scrollIntoView();
 
   return (
     <div className="home-greeting-event-separator">
       <Navbar
         navbarRef={navbarRef}
         setLeagueName={setLeagueName}
-        transitionPage={transitionPage} />
+        transitionPage={transitionPage}
+      />
       <HomeGreeting />
       <BetSlipList
         cancelAllFromBetSlipArray={cancelAllFromBetSlipArray}
@@ -56,6 +58,7 @@ function Home() {
         setAmountWagered={setAmountWagered}
         placeBet={placeBet}
         balance={balance}
+        stringMoneyBalance={stringMoneyBalance}
         amountWagered={amountWagered}
         setNewBalanceAfterCheckout={setNewBalanceAfterCheckout}
       />
@@ -74,9 +77,7 @@ function Home() {
           {/* <MockGameList addToBetSlipArray={addToBetSlipArray} /> */}
         </>
       )}
-      <Footer
-        executeScroll={executeScroll}
-      />
+      <Footer executeScroll={executeScroll} />
       <ModalMessage
         show={modalShow}
         onHide={() => setModalShow(false)}

@@ -14,11 +14,14 @@ function BetSlipList(props) {
     balance,
     amountWagered,
     setNewBalanceAfterCheckout,
+    stringMoneyBalance,
   } = props;
 
   return (
     <>
-      <div className="balance">Balance: $ {balance && balance}</div>
+      <div className="balance">
+        Balance: $ {stringMoneyBalance && stringMoneyBalance}
+      </div>
 
       {!betSlipArray[0] && (
         <>
