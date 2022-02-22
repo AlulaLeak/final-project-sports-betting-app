@@ -6,7 +6,7 @@ const socket = io.connect("http://localhost:3021");
 
 export function useUserInfo() {
   const { user } = useAuth0();
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState("...Loading!");
 
   setInterval(() => {
     socket.emit("user_info", user);
