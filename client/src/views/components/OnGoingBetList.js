@@ -26,6 +26,7 @@ function OnGoingBetList() {
                       <div className="potential-payout-ongoing">
                         <div>Potential Payout: &nbsp;</div>
                         <div>
+
                           ${" "}
                           {onGoingBetSlip[0].potential_payout
                             .toFixed(2)
@@ -42,6 +43,7 @@ function OnGoingBetList() {
                             .toFixed(2)
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </div>
+
                       </div>
                     </div>
                   </div>

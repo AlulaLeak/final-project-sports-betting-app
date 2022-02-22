@@ -37,7 +37,7 @@
 
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 420px) {
   .hello {
     font-size: 20px;
     color: #00AFF0;
@@ -45,5 +45,14 @@
     padding-right: 10px;
   }
 
-  
+  .topbox {
+    background-color: #0000;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px 0px 10px 0px;
+    padding: 5px 40px 5px 40px;  
+    
+  }
 } 
