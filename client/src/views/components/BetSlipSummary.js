@@ -15,20 +15,20 @@ function BetSlipSummary(props) {
     amountWagered,
     setNewBalanceAfterCheckout,
     wagerTakesOnlyNumbers,
-    balance
+    balance,
   } = props;
 
   const [modalShow, setModalShow] = useState(false);
 
   const isDisabled = () => {
-    console.log("HERE:", amountWagered, balance);
-    if (amountWagered > balance) {
+    console.log("HERE:", amountWagered, parseInt(balance));
+    if (parseInt(amountWagered) > parseInt(balance)) {
       setModalShow(true);
     } else {
       setNewBalanceAfterCheckout(amountWagered);
       cancelAllFromBetSlipArray();
     }
-  }
+  };
 
   return (
     <>
@@ -43,8 +43,11 @@ function BetSlipSummary(props) {
           <div>Total Wager</div>
           <div className="dollar-sign-input">
             <p>$</p>
-            <input type="number" onChange={(e) =>  //
-              setAmountWagered(e.target.value)}
+            <input
+              type="number"
+              onChange={(
+                e //
+              ) => setAmountWagered(e.target.value)}
             />
           </div>
         </div>
@@ -70,7 +73,6 @@ function BetSlipSummary(props) {
           header="Alert"
           message1="You don't have enough balance to place a bet!"
         />
-
       </div>
     </>
   );

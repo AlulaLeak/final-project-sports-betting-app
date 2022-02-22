@@ -13,7 +13,7 @@ function getTodayAndTmoDate() {
   const ystdyStr = yesterday.toISOString();
   const ystdy = ystdyStr.substring(0, 10);
 
-  const dateRange = "date=" + tdy + "," + tmo;
+  const dateRange = "date=" + ystdy + "," + tdy;
 
   return dateRange;
 }
