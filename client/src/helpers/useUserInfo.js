@@ -13,7 +13,9 @@ export function useUserInfo() {
   }, 3000);
 
   socket.on("user_balance", (usrBalance) => {
-    setBalance(usrBalance.balance.toFixed(2));
+    setBalance(
+      usrBalance.balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    );
   });
 
   function setNewBalanceAfterCheckout(amountWagered) {
