@@ -3,7 +3,6 @@ import BetSlipItem from "./BetSlipItem";
 import BetSlipSummary from "./BetSlipSummary";
 import "../../styles/BetSlipItem.css";
 
-
 function BetSlipList(props) {
   const {
     cancelFromBetSlipArray,
@@ -19,7 +18,7 @@ function BetSlipList(props) {
 
   return (
     <>
-      <div className="balance">Balance: {balance && balance}</div>
+      <div className="balance">Balance: $ {balance && balance}</div>
 
       {!betSlipArray[0] && (
         <>

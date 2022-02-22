@@ -6,14 +6,16 @@ const socket = io.connect("http://localhost:3021");
 
 export function useUserInfo() {
   const { user } = useAuth0();
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState("...Loading!");
 
   setInterval(() => {
     socket.emit("user_info", user);
   }, 3000);
 
   socket.on("user_balance", (usrBalance) => {
-    setBalance(usrBalance.balance.toFixed(2));
+    setBalance(
+      usrBalance.balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    );
   });
 
   function setNewBalanceAfterCheckout(amountWagered) {
