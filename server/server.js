@@ -454,7 +454,6 @@ setInterval(() => {
       db.query(unResolvedSingleBetQuery, unResolvedSingleBetValues).then(
         (unResolvedBetSlipOutComes) => {
           const betOutcomeArray = unResolvedBetSlipOutComes.rows[0].array_agg;
-          console.log("This is the unresolved betslip: ", unResolvedSlip);
           betOutcomeArray.map((outcomeOfSingleBet) => {
             outcomeOfSingleBet === false &&
               db.query(
@@ -516,6 +515,7 @@ app.post("/users", (req, res) => {
 
   db.query(selectionQueryString, selectUserValues)
     .then((response) => {
+      console.log("This is the response: ", response.rows);
       const insertionValues = name
         ? [name, picture, id, email, nickname]
         : [email, "", randomStringId, email, email];
@@ -538,7 +538,9 @@ app.post("/users", (req, res) => {
       !response.rows[0] &&
         db
           .query(insertionQueryString, insertionValues)
-          .then((res) => {})
+          .then((res) => {
+            console.log("This is the res: ", res.rows);
+          })
           .catch((e) => console.error(e.stack));
     })
     .catch((e) => console.error(e.stack));
