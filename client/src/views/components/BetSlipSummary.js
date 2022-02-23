@@ -54,7 +54,9 @@ function BetSlipSummary(props) {
         <div className="cashout-title">CASH OUT</div>
         <div className="potential-payout">
           <div>Potential Payout</div>
-          <div>$ {getPotentialPayout()}</div>
+          <div>
+            $ {getPotentialPayout().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
         </div>
 
         <button
