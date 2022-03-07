@@ -92,45 +92,34 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://rapidapi.com/SportspageFeeds](https://rapidapi.com/SportspageFeeds/api/sportspage-feeds/)
 2. Clone the repo
    ```sh
-   git clone "https://github.com/AlulaLeak/sports-betting-app"
+   git clone https://github.com/AlulaLeak/sports-betting-app
    ```
-3. Install NPM packages
+3. Install NPM packages in both client and server folders
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+4. Enter authentication details into client/.env
    ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+    REACT_APP_AUTH0_DOMAIN=<Auth0-Domain>
+    REACT_APP_AUTH0_CLIENT_ID=<Auth0-Client-Id>
+   ```
+5. Enter authentication details into server/.env
+   ```
+    DB_HOST=<Database-Host>
+    DB_PORT=<Port-Connecting-To-Database>(5432-By-Default)
+    DB_USER=<Username-Associated-To-Database>
+    DB_PASS=<Of-Your-Database>
+    DB_NAME=<Name-Of-Your-Database>
+    REACT_APP_X_RAPIDAPI_HOST=sportspage-feeds.p.rapidapi.com
+    REACT_APP_X_RAPIDAPI_KEY=<Your-API-Key>
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -194,6 +183,7 @@ Project Link: [https://github.com/AlulaLeak/sports-betting-app]
 - [Img Shields](https://shields.io)
 - [GitHub Pages](https://pages.github.com)
 - [Font Awesome](https://fontawesome.com)
+- [Sportspage-Feeds API](https://rapidapi.com/SportspageFeeds/api/sportspage-feeds/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
