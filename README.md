@@ -78,7 +78,7 @@
 
 <div align="center">
   <a href="./client/public/saybet-live-games-page.png">
-    <img src="./client/public/saybet-live-games-page.png" alt="Logo" width="394" height="966">
+    <img src="./client/public/saybet-live-games-page.png" alt="Logo" width="197" height="483">
   </a>
   </div>
 
