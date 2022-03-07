@@ -14,8 +14,6 @@
     <img src="./client/public/SayBet-logo.png" alt="Logo" width="120" height="120">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
-
   <p align="center">
     A live sports wagering app for the NBA, NFL, NHL and MLB.
     <br />
@@ -40,7 +38,6 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
