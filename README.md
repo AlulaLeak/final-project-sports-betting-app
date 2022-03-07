@@ -26,7 +26,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/AlulaLeak/sports-betting-app/blob/client/public/SayBet-logo.png">
+  <a href="https://github.com/AlulaLeak/sports-betting-app/tree/master/client/public/SayBet-logo.png">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -35,7 +35,7 @@
   <p align="center">
     An awesome README template to jumpstart your projects!
     <br />
-    <a href="https://github.com/AlulaLeak/sports-betting-app/blob/client/public/saybet-live-games-page.png"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/AlulaLeak/sports-betting-app/tree/master/client/public/saybet-live-games-page.png"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/AlulaLeak/sports-betting-app">View Demo</a>
@@ -233,7 +233,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-shield]: https://img.shields.io/github/issues/AlulaLeak/sports-betting-app.svg?style=for-the-badge
 [issues-url]: https://github.com/AlulaLeak/sports-betting-app/issues
 [license-shield]: https://img.shields.io/github/license/AlulaLeak/sports-betting-app.svg?style=for-the-badge
-[license-url]: https://github.com/AlulaLeak/sports-betting-app/blob/master/LICENSE.txt
+[license-url]: https://github.com/AlulaLeak/sports-betting-app/tree/master/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/alula-leakemariam-903059233/
 [product-screenshot]: images/screenshot.png
