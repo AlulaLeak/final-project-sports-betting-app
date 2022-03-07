@@ -27,7 +27,7 @@
 <br />
 <div align="center">
   <a href="./client/public/SayBet-logo.png">
-    <img src="./client/public/SayBet-logo.png" alt="Logo" width="80" height="80">
+    <img src="./client/public/SayBet-logo.png" alt="Logo" width="120" height="120">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
@@ -76,7 +76,11 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](client/public/saybet-live-games-page.png)
+<div align="center">
+  <a href="./client/public/saybet-live-games-page.png">
+    <img src="./client/public/saybet-live-games-page.png" alt="Logo" width="394" height="966">
+  </a>
+  </div>
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
