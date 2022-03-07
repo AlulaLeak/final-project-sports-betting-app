@@ -27,7 +27,7 @@
 <br />
 <div align="center">
   <a href="./client/public/SayBet-logo.png">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="./client/public/SayBet-logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
@@ -76,7 +76,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/AlulaLeak/sports-betting-app/blob/master/client/public/saybet-live-games-page.png)
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
@@ -200,7 +200,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-Project Link: ["https://github.com/AlulaLeak/sports-betting-app"
+Project Link: ["https://github.com/AlulaLeak/sports-betting-app"]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
