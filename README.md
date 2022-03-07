@@ -26,7 +26,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/AlulaLeak/sports-betting-app/blob/add/readme/client/public/SayBet-logo.png">
+  <a href="https://github.com/AlulaLeak/sports-betting-app/blob/client/public/SayBet-logo.png">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -35,7 +35,7 @@
   <p align="center">
     An awesome README template to jumpstart your projects!
     <br />
-    <a href="https://github.com/AlulaLeak/sports-betting-app/blob/add/readme/client/public/saybet-live-games-page.png"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/AlulaLeak/sports-betting-app/blob/client/public/saybet-live-games-page.png"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href=""https://github.com/AlulaLeak/sports-betting-app"">View Demo</a>
