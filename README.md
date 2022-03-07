@@ -38,11 +38,11 @@
     <a href="https://github.com/AlulaLeak/sports-betting-app/blob/client/public/saybet-live-games-page.png"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href=""https://github.com/AlulaLeak/sports-betting-app"">View Demo</a>
+    <a href="https://github.com/AlulaLeak/sports-betting-app">View Demo</a>
     ·
-    <a href=""https://github.com/AlulaLeak/sports-betting-app"/issues">Report Bug</a>
+    <a href="https://github.com/AlulaLeak/sports-betting-app/issues">Report Bug</a>
     ·
-    <a href=""https://github.com/AlulaLeak/sports-betting-app"/issues">Request Feature</a>
+    <a href="https://github.com/AlulaLeak/sports-betting-app/issues">Request Feature</a>
   </p>
 </div>
 
