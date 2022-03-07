@@ -26,7 +26,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/AlulaLeak/sports-betting-app/tree/master/client/public/SayBet-logo.png">
+  <a href="./client/public/SayBet-logo.png">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
