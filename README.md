@@ -227,13 +227,13 @@ Use this space to list resources you find helpful and would like to give credit 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/AlulaLeak/sports-betting-app/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: "https://github.com/AlulaLeak/sports-betting-app"/network/members
+[forks-url]: https://github.com/AlulaLeak/sports-betting-app/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: "https://github.com/AlulaLeak/sports-betting-app"/stargazers
+[stars-url]: https://github.com/AlulaLeak/sports-betting-app/stargazers
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: "https://github.com/AlulaLeak/sports-betting-app"/issues
+[issues-url]: https://github.com/AlulaLeak/sports-betting-app/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: "https://github.com/AlulaLeak/sports-betting-app"/blob/master/LICENSE.txt
+[license-url]: https://github.com/AlulaLeak/sports-betting-app/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
