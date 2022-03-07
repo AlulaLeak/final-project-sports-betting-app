@@ -50,7 +50,7 @@ let fetchedScheduledGameInfo;
 setInterval(() => {
   let options = {
     method: "GET",
-    url: `https://sportspage-feeds.p.rapidapi.com/games/?${getTodayAndTmoDate()}&skip=100`,
+    url: `https://sportspage-feeds.p.rapidapi.com/games/?${getTodayAndTmoDate()}`,
     headers: {
       "x-rapidapi-host": process.env.REACT_APP_X_RAPIDAPI_HOST,
       "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
