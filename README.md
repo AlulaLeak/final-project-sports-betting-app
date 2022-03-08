@@ -76,7 +76,7 @@ Early cash out functionality coming soon!
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Major frameworks/libraries used:
 
 - [React.js](https://reactjs.org/)
 - [Socket.IO](https://socket.io/)
@@ -91,7 +91,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Installing and setting up your app. - This template relies on external services._
 
 1. Get a free API Key at [https://rapidapi.com/SportspageFeeds](https://rapidapi.com/SportspageFeeds/api/sportspage-feeds/)
 2. Clone the repo
