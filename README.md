@@ -94,20 +94,21 @@ Major frameworks/libraries used:
 _Installing and setting up your app. - This template relies on external services._
 
 1. Get a free API Key at [https://rapidapi.com/SportspageFeeds](https://rapidapi.com/SportspageFeeds/api/sportspage-feeds/)
-2. Clone the repo
+2. Create an Auth0 account at [https://auth0.com/](https://auth0.com/)
+3. Clone the repo
    ```sh
    git clone https://github.com/AlulaLeak/sports-betting-app
    ```
-3. Install NPM packages in both client and server folders
+4. Install NPM packages in both client and server folders
    ```sh
    npm install
    ```
-4. Enter authentication details into client/.env
+5. Enter authentication details into client/.env
    ```
     REACT_APP_AUTH0_DOMAIN=<Auth0-Domain>
     REACT_APP_AUTH0_CLIENT_ID=<Auth0-Client-Id>
    ```
-5. Enter authentication details into server/.env
+6. Enter authentication details into server/.env
    ```
     DB_HOST=<Database-Host>
     DB_PORT=<Port-Connecting-To-Database>(5432-By-Default)
